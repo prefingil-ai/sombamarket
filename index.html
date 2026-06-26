@@ -1661,6 +1661,42 @@
             document.getElementById('ficheModal').classList.add('active');
         }
 
+
+        // ===== OUVRIR FICHE POUR PRODUIT ADMIN =====
+        function openFicheAdmin(productId) {
+            const p = adminProducts.find(x => x.id === productId);
+            if (!p) return;
+
+            document.getElementById('ficheTitle').textContent = p.name;
+            document.getElementById('ficheImg').src = p.img || '';
+            document.getElementById('ficheDesc').textContent = p.desc || '';
+            document.getElementById('ficheImp').textContent = p.imp || 'Voir description ci-dessus';
+            document.getElementById('fichePrice').textContent = parseInt(p.price).toLocaleString() + ' FCFA' + (p.unit ? ' ' + p.unit : '');
+            document.getElementById('ficheOldPrice').textContent = p.oldprice ? parseInt(p.oldprice).toLocaleString() + ' FCFA' : '';
+
+            // Mode d'emploi en étapes
+            const manualDiv = document.getElementById('ficheManual');
+            if (p.manual) {
+                const steps = p.manual.split(/[.\n]/).filter(s => s.trim().length > 3);
+                manualDiv.innerHTML = steps.map((step, i) => `
+                    <div class="fiche-step">
+                        <div class="fiche-step-num">${i+1}</div>
+                        <p>${step.trim()}</p>
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('ficheManSection').style.display = 'none';
+            }
+
+            // Bouton commander
+            document.getElementById('ficheOrderBtn').onclick = function() {
+                closeFiche();
+                openModal(p.name, p.price);
+            };
+
+            document.getElementById('ficheModal').classList.add('active');
+        }
+
         function closeFiche() {
             document.getElementById('ficheModal').classList.remove('active');
         }
@@ -2042,7 +2078,7 @@ function addProductCard(p) {
             ${p.imp ? `<div class="product-importance">⭐ ${p.imp}</div>` : ''}
             <div class="product-footer">
                 <div class="product-price">${priceDisplay}</div>
-                ${p.manual ? `<button class="manual-btn" onclick="alert('${p.manual.replace(/'/g,"\\'")}')">📖 Manuel</button>` : ''}
+                ${(p.manual || p.desc) ? `<button class="manual-btn" onclick="openFicheAdmin(${p.id})">📖 Manuel</button>` : ''}
             </div>
             <button class="order-btn" onclick="openModal('${p.name.replace(/'/g,"\\'")}','${p.price}')">
                 <span>🛒 Commander sur WhatsApp</span>
