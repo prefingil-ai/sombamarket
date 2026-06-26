@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SombaMarket - Commerce Congolais de Qualité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-dark:    #0A1628;
+            --blue-main:    #1565C0;
+            --blue-mid:     #1976D2;
+            --blue-light:   #42A5F5;
+            --blue-pale:    #E3F2FD;
+            --blue-accent:  #0D47A1;
+            --white:        #FFFFFF;
+            --off-white:    #F0F7FF;
+            --gold:         #D4AF37;
+            --congo-red:    #DC241F;
+            --congo-yellow: #FBDE4A;
+            --congo-green:  #009543;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F0F7FF;
+            color: #0A1628;
+            overflow-x: hidden;
+        }
+
+        /* ===================== HEADER ===================== */
+        header {
+            background: linear-gradient(135deg, #0A1628 0%, #1A3A6C 100%);
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg,
+                var(--congo-green) 0%, var(--congo-green) 33%,
+                var(--congo-yellow) 33%, var(--congo-yellow) 66%,
+                var(--congo-red) 66%, var(--congo-red) 100%);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.8rem 0;
+        }
+
+        .logo-section { display:flex; align-items:center; gap:1rem; }
+
+        .logo-svg { width:60px; height:60px; flex-shrink:0; }
+
+        .logo-text .brand {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: var(--white);
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0 var(--blue-light);
+            line-height: 1;
+        }
+        .logo-text .tagline {
+            color: #42A5F5;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Barre de recherche dans le header */
+        .header-search {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .header-search:focus-within {
+            background: rgba(255,255,255,0.2);
+            border-color: #1565C0;
+            box-shadow: 0 0 0 3px rgba(66,165,245,0.3);
+        }
+        .header-search input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0.7rem 1.2rem;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+        .header-search input::placeholder { color: rgba(255,255,255,0.6); }
+        .header-search button {
+            background: #1565C0;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        .header-search button:hover { background: #0D47A1; }
+
+        .contact-btn {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid #42A5F5;
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .contact-btn:hover {
+            background: #1565C0;
+            transform: translateY(-2px);
+        }
+
+        /* ===================== HERO ===================== */
+        .hero {
+            background: linear-gradient(135deg, #0A1628 0%, #0D47A1 60%, #1976D2 100%);
+            padding: 3rem 5% 5rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(66,165,245,0.15) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80"><path d="M0,40 Q300,0 600,40 T1200,40 L1200,80 L0,80 Z" fill="%23F0F7FF"/></svg>');
+            background-size: cover;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 0.5rem; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.4);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 0.8rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===================== CATEGORIES ===================== */
+        .categories-section {
+            background: #FFFFFF;
+            padding: 1.5rem 5%;
+            border-bottom: 3px solid #BBDEFB;
+            position: sticky;
+            top: 76px;
+            z-index: 900;
+            box-shadow: 0 4px 15px rgba(139,105,20,0.1);
+        }
+        .categories-scroll {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #42A5F5 #E3F2FD;
+        }
+        .categories-scroll::-webkit-scrollbar { height: 4px; }
+        .categories-scroll::-webkit-scrollbar-track { background: #E3F2FD; border-radius: 2px; }
+        .categories-scroll::-webkit-scrollbar-thumb { background: #1565C0; border-radius: 2px; }
+
+        .cat-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #BBDEFB;
+            border-radius: 15px;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-width: 100px;
+            font-family: 'Inter', sans-serif;
+        }
+        .cat-btn .cat-icon { font-size: 1.8rem; display:flex; align-items:center; justify-content:center; }
+        .cat-btn .cat-name { font-size: 0.8rem; font-weight: 600; color: #0A1628; letter-spacing: 0.3px; }
+        .cat-btn:hover {
+            border-color: #1565C0;
+            background: #E3F2FD;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(21,101,192,0.2);
+        }
+        .cat-btn.active {
+            background: #1565C0;
+            border-color: #1565C0;
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(21,101,192,0.4);
+        }
+        .cat-btn.active .cat-name { color: var(--white); }
+
+        /* ===================== SOUS-CATEGORIES ===================== */
+        .subcategories-bar {
+            background: #E3F2FD;
+            padding: 0.8rem 5%;
+            display: none;
+            border-bottom: 2px solid rgba(21,101,192,0.1);
+        }
+        .subcategories-bar.active { display: block; }
+        .subcats-scroll {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding-bottom: 0.3rem;
+        }
+        .subcat-tag {
+            padding: 0.4rem 1rem;
+            border: 2px solid #1565C0;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #1565C0;
+            transition: all 0.3s;
+        }
+        .subcat-tag:hover, .subcat-tag.active {
+            background: #1565C0;
+            color: var(--white);
+        }
+
+        /* ===================== PRODUITS HORIZONTAUX ===================== */
+        .products-section {
+            padding: 2rem 5%;
+        }
+        .products-header {
+            max-width: 1400px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .products-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #0A1628;
+        }
+        .products-header h2 span { color: #1565C0; }
+        .scroll-hint {
+            color: #1565C0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Conteneur du scroll horizontal */
+        .products-scroll-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .products-horizontal {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0.5rem 2rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #1565C0 #E3F2FD;
+            -webkit-overflow-scrolling: touch;
+        }
+        .products-horizontal::-webkit-scrollbar { height: 6px; }
+        .products-horizontal::-webkit-scrollbar-track { background: #E3F2FD; border-radius: 3px; }
+        .products-horizontal::-webkit-scrollbar-thumb { background: #1565C0; border-radius: 3px; }
+
+        /* Boutons de navigation */
+        .scroll-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .scroll-btn {
+            background: #1565C0;
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-btn:hover {
+            background: #0A1628;
+            transform: scale(1.1);
+        }
+
+        /* ===================== CARTE PRODUIT ===================== */
+        .product-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(139,105,20,0.1);
+            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 320px;
+            border: 2px solid #BBDEFB;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(139,105,20,0.2);
+            border-color: #1565C0;
+        }
+
+        /* Bande décorative pagne en haut */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: repeating-linear-gradient(90deg,
+                #1565C0 0px, #1565C0 15px,
+                #42A5F5 15px, #42A5F5 30px,
+                #E3F2FD 30px, #E3F2FD 45px
+            );
+            z-index: 10;
+        }
+
+        .product-media {
+            position: relative;
+            height: 220px;
+            background: #E3F2FD;
+            overflow: hidden;
+        }
+        .product-media img,
+        .product-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .product-card:hover .product-media img { transform: scale(1.08); }
+
+        .media-badge {
+            position: absolute;
+            top: 12px; right: 12px;
+            background: #1565C0;
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-body { padding: 1.2rem; }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #0A1628;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: #555;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-importance {
+            background: #E3F2FD;
+            border-left: 4px solid #1565C0;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #0A1628;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .product-price {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            color: #1565C0;
+            line-height: 1;
+        }
+        .product-price .old-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+            display: block;
+        }
+
+        .manual-btn {
+            background: #E3F2FD;
+            color: #1565C0;
+            border: 1px solid var(--blue-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .manual-btn:hover { background: #1565C0; color: var(--white); }
+
+        .order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1565C0, #0A1628);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #42A5F5, #1565C0);
+            transition: left 0.4s;
+        }
+        .order-btn:hover::before { left: 0; }
+        .order-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(139,105,20,0.4);
+        }
+        .order-btn span { position: relative; z-index: 1; }
+
+        /* ===================== MODAL ===================== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,22,40,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        .modal.active { display: flex; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+        .modal-content {
+            background: #FFFFFF;
+            border-radius: 20px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            border-top: 6px solid var(--blue-main);
+        }
+        @keyframes slideUp {
+            from { opacity:0; transform: translateY(40px); }
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1565C0, #0A1628);
+            padding: 1.5rem 2rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+        .close-modal {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: var(--white);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-modal:hover { background: var(--congo-red); transform: rotate(90deg); }
+
+        .modal-body { padding: 1.5rem 2rem; }
+
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: #0A1628;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #BBDEFB;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            background: var(--off-white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1565C0;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(139,105,20,0.1);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .product-selected-info {
+            background: #E3F2FD;
+            border: 2px solid #1565C0;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-selected-info strong { color: #0A1628; font-size: 1rem; }
+        .total-price-display {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: #1565C0;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+        }
+
+        .confirmation {
+            display: none;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            animation: slideUp 0.4s;
+        }
+        .confirmation.show { display: block; }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: linear-gradient(135deg, #0A1628, #1A3A6C);
+            color: var(--white);
+            padding: 3rem 5% 2rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            display: block;
+            height: 6px;
+            background: repeating-linear-gradient(90deg,
+                var(--congo-red) 0px, var(--congo-red) 30px,
+                var(--congo-yellow) 30px, var(--congo-yellow) 60px,
+                var(--congo-green) 60px, var(--congo-green) 90px
+            );
+            margin-bottom: 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #42A5F5;
+        }
+        .footer-col p, .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 2;
+            display: block;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: #42A5F5; }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+
+        /* ===== TICKER PROMOTIONNEL ===== */
+        .ticker-wrap {
+            background: linear-gradient(90deg, #1565C0, #0D47A1);
+            padding: 0;
+            overflow: hidden;
+            border-bottom: 2px solid #42A5F5;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker 35s linear infinite;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 2.5rem;
+            color: white;
+            font-size: 0.88rem;
+            font-weight: 600;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        .ticker-sep {
+            color: #42A5F5;
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+        }
+
+        /* ===== SECTION AVIS CLIENTS ===== */
+        .reviews-section {
+            padding: 3rem 5%;
+            background: white;
+            border-top: 3px solid #E3F2FD;
+        }
+        .reviews-header {
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+        .reviews-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #0A1628;
+            margin-bottom: 0.5rem;
+        }
+        .reviews-header p {
+            color: #666;
+            font-size: 1rem;
+        }
+        .reviews-scroll {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0.5rem 1.5rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #42A5F5 #E3F2FD;
+        }
+        .review-card {
+            background: #F0F7FF;
+            border: 2px solid #E3F2FD;
+            border-radius: 20px;
+            padding: 1.5rem;
+            min-width: 280px;
+            max-width: 280px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(21,101,192,0.15);
+            border-color: #42A5F5;
+        }
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: #1565C0;
+            opacity: 0.15;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .reviewer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .reviewer-name {
+            font-weight: 700;
+            color: #0A1628;
+            font-size: 0.95rem;
+        }
+        .reviewer-location {
+            color: #888;
+            font-size: 0.8rem;
+        }
+        .review-stars {
+            color: #FFB300;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+        .review-text {
+            color: #444;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .review-product {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #BBDEFB;
+            font-size: 0.78rem;
+            color: #1565C0;
+            font-weight: 600;
+        }
+        .review-date {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 0.3rem;
+        }
+        .stars-summary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .stars-big {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0A1628;
+            line-height: 1;
+        }
+        .stars-detail {
+            text-align: left;
+        }
+        .stars-detail .stars-row {
+            color: #FFB300;
+            font-size: 1.1rem;
+        }
+        .stars-detail p {
+            color: #666;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 768px) {
+            .logo-text .brand { font-size: 1.6rem; }
+            .header-search { display: none; }
+            .product-card { width: 280px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-section">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="15" fill="rgba(255,255,255,0.08)"/>
+                    <path d="M 30,42 L 70,42 L 75,88 L 25,88 Z" fill="white" stroke="#42A5F5" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M 38,42 Q 38,26 50,26 Q 62,26 62,42" fill="none" stroke="#42A5F5" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M 42,54 Q 47,47 55,50 Q 59,52 59,57 Q 59,63 53,66" fill="#D4AF37" opacity="0.9"/>
+                    <path d="M 53,66 Q 47,70 45,76 Q 43,80 48,83 Q 54,86 60,83" fill="white" opacity="0.9"/>
+                    <line x1="10" y1="55" x2="26" y2="55" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="8" y1="64" x2="25" y2="64" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="73" x2="24" y2="73" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="35" cy="92" r="3.5" fill="#42A5F5"/>
+                    <circle cx="65" cy="92" r="3.5" fill="#42A5F5"/>
+                </svg>
+                <div class="logo-text">
+                    <div class="brand">SOMBAMARKET</div>
+                    <div class="tagline">Achetez Malin, Vivez Mieux</div>
+                </div>
+            </div>
+            <div class="header-search">
+                <input type="text" id="searchInput" placeholder="🔍 Rechercher un produit..." onkeyup="searchProducts()">
+                <button onclick="searchProducts()">→</button>
+            </div>
+            <a href="tel:+242065137926" class="contact-btn">📞 065 137 926</a>
+        </div>
+    </header>
+
+    <!-- ===== BANDEAU DÉFILANT ===== -->
+    <div class="ticker-wrap">
+        <div class="ticker-track">
+            <span class="ticker-item">🔥 PROMOTION LIMITÉE — Profitez-en maintenant avant la fin du stock !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🚚 Livraison rapide à Brazzaville et Pointe-Noire</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">💥 -17% sur le Cuiseur à Œufs 7-en-1 — Offre valable ce mois uniquement !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">📦 Commandez maintenant, livré chez vous sous 24h à Brazzaville</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">⚡ NE RATEZ PAS cette opportunité — Stock très limité !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🇨🇬 SombaMarket — Achetez Malin, Vivez Mieux — Commerce 100% Congo</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🎁 Profitez de nos prix imbattables — Livraison à Brazzaville & Pointe-Noire</span>
+            <span class="ticker-sep">★</span>
+            <!-- Duplicate pour le loop infini -->
+            <span class="ticker-item">🔥 PROMOTION LIMITÉE — Profitez-en maintenant avant la fin du stock !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🚚 Livraison rapide à Brazzaville et Pointe-Noire</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">💥 -17% sur le Cuiseur à Œufs 7-en-1 — Offre valable ce mois uniquement !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">📦 Commandez maintenant, livré chez vous sous 24h à Brazzaville</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">⚡ NE RATEZ PAS cette opportunité — Stock très limité !</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🇨🇬 SombaMarket — Achetez Malin, Vivez Mieux — Commerce 100% Congo</span>
+            <span class="ticker-sep">★</span>
+            <span class="ticker-item">🎁 Profitez de nos prix imbattables — Livraison à Brazzaville & Pointe-Noire</span>
+            <span class="ticker-sep">★</span>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Découvrez Nos Produits d'Excellence</h1>
+            <p>Des produits authentiques 100% Congo 🇨🇬, livrés à domicile à Brazzaville</p>
+            <div class="hero-badge">🇨🇬 MADE IN CONGO — FIERTÉ CONGOLAISE 🇨🇬</div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIES ===== -->
+    <section class="categories-section">
+        <div class="categories-scroll" id="categoriesScroll">
+            <button class="cat-btn active" onclick="filterCategory('all')" data-cat="all">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="12" height="12" rx="3" fill="#1565C0"/><rect x="20" y="4" width="12" height="12" rx="3" fill="#42A5F5"/><rect x="4" y="20" width="12" height="12" rx="3" fill="#42A5F5"/><rect x="20" y="20" width="12" height="12" rx="3" fill="#1565C0"/></svg></span>
+                <span class="cat-name">Tout</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('aliments')" data-cat="aliments">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="24" rx="13" ry="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/><path d="M7 22 Q18 14 29 22" fill="#BBDEFB" stroke="#1565C0" stroke-width="1"/><circle cx="18" cy="13" r="5" fill="#1565C0"/><path d="M15 13 Q18 9 21 13" fill="none" stroke="#42A5F5" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="30" x2="31" y2="30" stroke="#1565C0" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                <span class="cat-name">Aliments</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('cosmetique')" data-cat="cosmetique">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="14" width="10" height="16" rx="3" fill="#1565C0"/><rect x="15" y="10" width="6" height="6" rx="2" fill="#42A5F5"/><rect x="16" y="6" width="4" height="5" rx="1" fill="#0D47A1"/><ellipse cx="18" cy="19" rx="3" ry="2" fill="#42A5F5" opacity="0.6"/><circle cx="26" cy="10" r="4" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/><path d="M24 10 Q26 7 28 10" fill="none" stroke="#1565C0" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+                <span class="cat-name">Cosmétique</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('habillement')" data-cat="habillement">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 8 L8 14 L12 16 L12 30 L24 30 L24 16 L28 14 L23 8 Q21 11 18 11 Q15 11 13 8Z" fill="#1565C0"/><path d="M13 8 Q15 11 18 11 Q21 11 23 8" fill="none" stroke="#42A5F5" stroke-width="1.2"/><line x1="15" y1="20" x2="21" y2="20" stroke="#42A5F5" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+                <span class="cat-name">Habillement</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('sante')" data-cat="sante">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="14" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/><rect x="14" y="10" width="8" height="16" rx="4" fill="#1565C0"/><rect x="10" y="14" width="16" height="8" rx="4" fill="#1565C0"/></svg></span>
+                <span class="cat-name">Santé</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('energie')" data-cat="energie">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="13" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/><path d="M20 6 L11 19 H18 L16 30 L25 17 H18 Z" fill="#1565C0"/></svg></span>
+                <span class="cat-name">Énergies</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('construction')" data-cat="construction">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="20" width="20" height="10" rx="2" fill="#1565C0"/><path d="M6 20 L18 8 L30 20Z" fill="#42A5F5"/><rect x="14" y="20" width="8" height="10" rx="1" fill="#0D47A1"/><line x1="18" y1="20" x2="18" y2="30" stroke="#E3F2FD" stroke-width="1"/><rect x="4" y="28" width="28" height="3" rx="1" fill="#0D47A1"/></svg></span>
+                <span class="cat-name">Construction</span>
+            </button>
+            <button class="cat-btn" onclick="filterCategory('automobile')" data-cat="automobile">
+                <span class="cat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 22 L10 14 L14 11 H22 L26 14 L30 22 L30 27 L6 27Z" fill="#1565C0"/><path d="M11 14 L13 11 H23 L25 14Z" fill="#42A5F5"/><rect x="12" y="14" width="12" height="6" rx="2" fill="#E3F2FD" opacity="0.7"/><circle cx="11" cy="27" r="4" fill="#0D47A1" stroke="#E3F2FD" stroke-width="1.5"/><circle cx="25" cy="27" r="4" fill="#0D47A1" stroke="#E3F2FD" stroke-width="1.5"/><circle cx="11" cy="27" r="1.8" fill="#42A5F5"/><circle cx="25" cy="27" r="1.8" fill="#42A5F5"/></svg></span>
+                <span class="cat-name">Automobile</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== SOUS-CATEGORIES ===== -->
+    <div class="subcategories-bar" id="subcatBar">
+        <div class="subcats-scroll" id="subcatsScroll"></div>
+    </div>
+
+    <!-- ===== PRODUITS ===== -->
+    <section class="products-section">
+        <div class="products-header">
+            <h2>Nos <span>Produits</span></h2>
+            <div style="display:flex; align-items:center; gap:1rem;">
+                <span class="scroll-hint">← Défiler →</span>
+                <div class="scroll-nav">
+                    <button class="scroll-btn" onclick="scrollProducts(-1)">&#8592;</button>
+                    <button class="scroll-btn" onclick="scrollProducts(1)">&#8594;</button>
+                </div>
+            </div>
+        </div>
+        <div class="products-scroll-wrapper">
+            <div class="products-horizontal" id="productsContainer">
+
+                <!-- PRODUIT 1: Cuiseur à Oeufs -->
+                <div class="product-card" data-category="aliments" data-subcategory="equipements">
+                    <div class="product-media">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='218' rx='110' ry='12' fill='%23BBDEFB' opacity='0.5'/><rect x='100' y='150' width='200' height='65' rx='32' fill='white' stroke='%231565C0' stroke-width='2'/><ellipse cx='200' cy='150' rx='100' ry='16' fill='white' stroke='%231565C0' stroke-width='2'/><ellipse cx='200' cy='150' rx='85' ry='11' fill='%23F0F8FF'/><circle cx='168' cy='147' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='200' cy='144' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='232' cy='147' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='152' cy='158' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='248' cy='158' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='183' cy='160' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='217' cy='160' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='200' cy='200' r='9' fill='%23E53935'/><circle cx='200' cy='200' r='5' fill='%23FF7043'/><rect x='155' y='206' width='90' height='5' rx='2.5' fill='%231565C0' opacity='0.25'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Cuiseur à Oeufs 7-en-1</text><text x='200' y='252' font-family='Arial' font-size='11' fill='%2342A5F5' text-anchor='middle' fill='%231565C0'>10 à 15 minutes — Arrêt automatique</text></svg>" alt="Cuiseur à Oeufs">
+                        <div class="media-badge">⚡ Produit Gagnant</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Cuiseur à Œufs Électrique 7-en-1</h3>
+                        <p class="product-description">
+                            Préparez un petit-déjeuner parfait en quelques minutes sans surveillance ! Ce cuiseur électrique intelligent cuit jusqu'à 7 œufs simultanément - durs, mollets ou pochés selon vos préférences.
+                        </p>
+                        <div class="product-importance">
+                            ⭐ Gagnez 15 min chaque matin ! Cuisson parfaite garantie, arrêt automatique, économique.
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="old-price">15 000 FCFA</span>
+                                12 500 FCFA
+                            </div>
+                            <button class="manual-btn" onclick="alert('Mode d\'emploi: Placez les oeufs (max 7). Ajoutez l\'eau selon cuisson. Branchez et appuyez. Attendez le signal (10-15 min). Plongez dans eau froide. Nettoyez après usage.')">📖 Manuel</button>
+                        </div>
+                        <button class="order-btn" onclick="openModal('Cuiseur à Œufs Électrique 7-en-1','12500')">
+                            <span>🛒 Commander sur WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PRODUIT 2: Huile de Palme -->
+                <div class="product-card" data-category="aliments" data-subcategory="huiles">
+                    <div class="product-media">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='220' rx='80' ry='10' fill='%23BBDEFB' opacity='0.4'/><rect x='165' y='85' width='70' height='130' rx='20' fill='%23E65100'/><rect x='172' y='85' width='56' height='130' rx='16' fill='%23FF6D00'/><rect x='172' y='130' width='56' height='50' rx='5' fill='white' opacity='0.92'/><text x='200' y='148' font-family='Arial' font-size='8' fill='%23E65100' text-anchor='middle' font-weight='bold'>HUILE DE PALME</text><text x='200' y='160' font-family='Arial' font-size='7' fill='%23666' text-anchor='middle'>100%25 Naturelle</text><text x='200' y='172' font-family='Arial' font-size='7' fill='%23666' text-anchor='middle'>1 Litre</text><rect x='172' y='68' width='56' height='22' rx='10' fill='%23BF360C'/><rect x='182' y='56' width='36' height='15' rx='7' fill='%23D84315'/><ellipse cx='200' cy='56' rx='18' ry='5' fill='%23BF360C'/><circle cx='150' cy='125' r='22' fill='%231B5E20' opacity='0.85'/><path d='M150 113 Q155 120 150 132 Q145 120 150 113Z' fill='%2381C784'/><path d='M142 118 Q150 124 158 118' fill='none' stroke='%2381C784' stroke-width='1.5'/><text x='200' y='242' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Huile de Palme Premium</text></svg>" alt="Huile de Palme">
+                        <div class="media-badge">🌿 Naturel</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Huile de Palme Premium</h3>
+                        <p class="product-description">
+                            Huile de palme 100% naturelle, extraite artisanalement dans les plantations congolaises. Qualité supérieure, riche en vitamines et nutriments essentiels pour toute la famille.
+                        </p>
+                        <div class="product-importance">
+                            ⭐ Produit de base essentiel. Source naturelle de vitamine A et antioxydants.
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">12 500 FCFA</div>
+                            <button class="manual-btn" onclick="alert('Conservation: température ambiante. Idéal pour cuisson et assaisonnement. Durée: 12 mois.')">📖 Manuel</button>
+                        </div>
+                        <button class="order-btn" onclick="openModal('Huile de Palme Premium','12500')">
+                            <span>🛒 Commander sur WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PRODUIT 3: Manioc -->
+                <div class="product-card" data-category="aliments" data-subcategory="feculents">
+                    <div class="product-media">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='215' rx='130' ry='14' fill='%23BBDEFB' opacity='0.4'/><ellipse cx='185' cy='160' rx='85' ry='42' fill='%236D4C41' transform='rotate(-12 185 160)'/><ellipse cx='185' cy='160' rx='72' ry='35' fill='%238D6E63' transform='rotate(-12 185 160)'/><ellipse cx='225' cy='150' rx='60' ry='32' fill='%235D4037' transform='rotate(10 225 150)' opacity='0.9'/><ellipse cx='225' cy='150' rx='50' ry='26' fill='%23A1887F' transform='rotate(10 225 150)'/><path d='M135 145 Q185 128 240 148' fill='none' stroke='%234E342E' stroke-width='2' stroke-dasharray='5 3'/><path d='M132 168 Q182 183 238 163' fill='none' stroke='%234E342E' stroke-width='2' stroke-dasharray='5 3'/><path d='M182 108 Q187 88 192 76' fill='none' stroke='%232E7D32' stroke-width='3' stroke-linecap='round'/><path d='M192 76 Q203 62 218 68' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M192 76 Q180 62 168 70' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Manioc Frais Premium</text></svg>" alt="Manioc Frais">
+                        <div class="media-badge">🇨🇬 Local</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Manioc Frais Premium</h3>
+                        <p class="product-description">
+                            Manioc frais de première qualité, cultivé dans nos fermes biologiques congolaises. Récolté à maturité parfaite pour garantir goût et texture exceptionnels.
+                        </p>
+                        <div class="product-importance">
+                            ⭐ Aliment de base indispensable. Source d'énergie durable pour toute la famille.
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">3 500 FCFA / Kg</div>
+                            <button class="manual-btn" onclick="alert('Éplucher, laver et faire bouillir 30-40 min. Conservation: 3-5 jours au frais.')">📖 Manuel</button>
+                        </div>
+                        <button class="order-btn" onclick="openModal('Manioc Frais Premium','3500')">
+                            <span>🛒 Commander sur WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PRODUIT 4: Poisson Salé -->
+                <div class="product-card" data-category="aliments" data-subcategory="proteines">
+                    <div class="product-media">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='212' rx='125' ry='12' fill='%23BBDEFB' opacity='0.45'/><path d='M290 130 L325 100 L325 160 Z' fill='%23455A64'/><path d='M88 130 Q132 78 228 100 Q290 115 290 130 Q228 168 132 156 Q88 148 88 130Z' fill='%23546E7A'/><path d='M150 94 Q200 83 252 98 Q215 90 150 94Z' fill='%23607D8B' opacity='0.7'/><path d='M145 163 Q192 176 245 160 Q202 170 145 163Z' fill='%23455A64' opacity='0.7'/><ellipse cx='245' cy='121' rx='11' ry='12' fill='white'/><circle cx='245' cy='121' r='7' fill='%23263238'/><circle cx='243' cy='119' r='2.5' fill='white'/><path d='M160 100 L165 162' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M192 90 L196 170' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M222 93 L225 166' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M120 117 Q130 106 145 112' fill='none' stroke='%23607D8B' stroke-width='2' stroke-linecap='round'/><path x1='125' y1='132' x2='142' y2='130' fill='none'/><path d='M117 132 Q128 126 142 130' fill='none' stroke='%23607D8B' stroke-width='2' stroke-linecap='round'/><text x='200' y='236' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Poisson Salé Artisanal</text></svg>" alt="Poisson Salé">
+                        <div class="media-badge">🐟 Artisanal</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Poisson Salé Artisanal</h3>
+                        <p class="product-description">
+                            Poisson du fleuve Congo, salé et séché selon les méthodes traditionnelles. Saveur authentique et conservation optimale garanties.
+                        </p>
+                        <div class="product-importance">
+                            ⭐ Excellente source de protéines. Ingrédient clé des sauces et plats congolais.
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">8 000 FCFA / 500g</div>
+                            <button class="manual-btn" onclick="alert('Dessaler 2-3 heures dans eau froide. Idéal pour sauces et grillades. Conservation: 6 mois lieu sec.')">📖 Manuel</button>
+                        </div>
+                        <button class="order-btn" onclick="openModal('Poisson Salé Artisanal','8000')">
+                            <span>🛒 Commander sur WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PRODUIT 5: Safou -->
+                <div class="product-card" data-category="aliments" data-subcategory="fruits">
+                    <div class="product-media">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='215' rx='115' ry='13' fill='%23BBDEFB' opacity='0.4'/><ellipse cx='168' cy='152' rx='36' ry='50' fill='%234A148C' transform='rotate(-8 168 152)'/><ellipse cx='168' cy='152' rx='28' ry='40' fill='%235E35B1' transform='rotate(-8 168 152)'/><ellipse cx='158' cy='136' rx='9' ry='14' fill='%237E57C2' opacity='0.45' transform='rotate(-8 158 136)'/><ellipse cx='218' cy='150' rx='34' ry='48' fill='%234527A0' transform='rotate(7 218 150)'/><ellipse cx='218' cy='150' rx='26' ry='38' fill='%235C35B1' transform='rotate(7 218 150)'/><ellipse cx='208' cy='135' rx='8' ry='12' fill='%237E57C2' opacity='0.45' transform='rotate(7 208 135)'/><ellipse cx='193' cy='162' rx='30' ry='44' fill='%236A1B9A'/><ellipse cx='193' cy='162' rx='23' ry='35' fill='%237B1FA2'/><ellipse cx='183' cy='147' rx='7' ry='11' fill='%239C27B0' opacity='0.45'/><path d='M184 105 Q187 85 193 74' fill='none' stroke='%232E7D32' stroke-width='3' stroke-linecap='round'/><path d='M193 74 Q204 60 220 67' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M193 74 Q181 60 168 68' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M193 82 Q208 73 218 79' fill='none' stroke='%2343A047' stroke-width='2' stroke-linecap='round'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Safou (Prunes Africaines)</text></svg>" alt="Safou">
+                        <div class="media-badge">🌴 Tropical</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Safou Frais (Prunes Africaines)</h3>
+                        <p class="product-description">
+                            Safous fraîchement cueillis, riches en huiles naturelles et saveurs délicates. Fruit tropical prisé pour sa valeur nutritionnelle exceptionnelle.
+                        </p>
+                        <div class="product-importance">
+                            ⭐ Riche en lipides sains, vitamines et minéraux. Délice tropical aux multiples bienfaits.
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">6 500 FCFA / Kg</div>
+                            <button class="manual-btn" onclick="alert('Faire bouillir 10-15 min ou griller. Consommer chaud avec sel. Conservation: 5 jours au réfrigérateur.')">📖 Manuel</button>
+                        </div>
+                        <button class="order-btn" onclick="openModal('Safou Frais','6500')">
+                            <span>🛒 Commander sur WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- fin products-horizontal -->
+        </div><!-- fin wrapper -->
+    </section>
+
+    <!-- ===== MODAL COMMANDE ===== -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📦 Votre Commande</h2>
+                <button class="close-modal" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm" onsubmit="submitOrder(event)">
+                    <input type="hidden" id="productName">
+                    <input type="hidden" id="productPrice">
+
+                    <div class="product-selected-info">
+                        <strong id="displayProduct">Produit</strong>
+                        <div class="total-price-display" id="totalDisplay">0 FCFA</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>👤 Nom complet *</label>
+                        <input type="text" id="customerName" placeholder="Votre nom et prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📞 Téléphone WhatsApp *</label>
+                        <input type="tel" id="customerPhone" placeholder="Ex: 06 XXX XXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📍 Adresse de livraison *</label>
+                        <textarea id="customerAddress" rows="2" placeholder="Quartier, rue, repère..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>📅 Date de livraison *</label>
+                            <input type="date" id="deliveryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>⏰ Heure *</label>
+                            <input type="time" id="deliveryTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>📦 Quantité *</label>
+                        <input type="number" id="quantity" min="1" value="1" required oninput="updateTotal()">
+                    </div>
+
+                    <button type="submit" class="whatsapp-btn">
+                        <span style="font-size:1.5rem">💬</span>
+                        Envoyer la commande sur WhatsApp
+                    </button>
+                    <div class="confirmation" id="confirmMsg">
+                        ✅ Redirection vers WhatsApp... Cliquez "Envoyer" pour confirmer !
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== AVIS CLIENTS ===== -->
+    <section class="reviews-section">
+        <div class="reviews-header">
+            <h2>⭐ Avis de nos Clients Satisfaits</h2>
+            <div class="stars-summary">
+                <div class="stars-big">4.9</div>
+                <div class="stars-detail">
+                    <div class="stars-row">★★★★★</div>
+                    <p>Basé sur 127 avis vérifiés</p>
+                    <p style="color:#1565C0; font-weight:600;">98% de clients satisfaits</p>
+                </div>
+            </div>
+            <p>Ce que nos clients disent de SombaMarket 🇨🇬</p>
+        </div>
+        <div class="reviews-scroll">
+
+            <!-- Avis 1 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#1565C0,#0D47A1);">MK</div>
+                    <div>
+                        <div class="reviewer-name">Marie-Claire Koubemba</div>
+                        <div class="reviewer-location">📍 Brazzaville, Moungali</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Le cuiseur à œufs est incroyable ! Mes enfants ont maintenant un petit-déjeuner parfait chaque matin sans que je passe 20 minutes en cuisine. Je recommande à 100% !"</p>
+                <div class="review-product">✅ Achat vérifié : Cuiseur à Œufs 7-en-1</div>
+                <div class="review-date">Il y a 3 jours</div>
+            </div>
+
+            <!-- Avis 2 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#388E3C,#1B5E20);">JB</div>
+                    <div>
+                        <div class="reviewer-name">Jean-Baptiste Moukala</div>
+                        <div class="reviewer-location">📍 Pointe-Noire, Loandjili</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Livraison très rapide à Pointe-Noire ! J'ai commandé le soir et reçu le lendemain matin. Le produit est exactement comme sur le site. SombaMarket est sérieux !"</p>
+                <div class="review-product">✅ Achat vérifié : Huile de Palme Premium</div>
+                <div class="review-date">Il y a 1 semaine</div>
+            </div>
+
+            <!-- Avis 3 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#7B1FA2,#4A148C);">SN</div>
+                    <div>
+                        <div class="reviewer-name">Sandrine Ngoma</div>
+                        <div class="reviewer-location">📍 Brazzaville, Bacongo</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Mon mari était sceptique mais après avoir reçu le cuiseur à œufs, il est conquis ! En 12 minutes, 7 œufs parfaitement cuits. On ne peut plus s'en passer le matin !"</p>
+                <div class="review-product">✅ Achat vérifié : Cuiseur à Œufs 7-en-1</div>
+                <div class="review-date">Il y a 2 semaines</div>
+            </div>
+
+            <!-- Avis 4 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#E65100,#BF360C);">PM</div>
+                    <div>
+                        <div class="reviewer-name">Patrick Mabiala</div>
+                        <div class="reviewer-location">📍 Brazzaville, Poto-Poto</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"J'ai commandé pour ma femme comme cadeau surprise. Elle était tellement heureuse ! Service client très réactif sur WhatsApp. Je recommande SombaMarket sans hésiter !"</p>
+                <div class="review-product">✅ Achat vérifié : Cuiseur à Œufs 7-en-1</div>
+                <div class="review-date">Il y a 3 semaines</div>
+            </div>
+
+            <!-- Avis 5 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#00838F,#006064);">AL</div>
+                    <div>
+                        <div class="reviewer-name">Angélique Loemba</div>
+                        <div class="reviewer-location">📍 Brazzaville, Makélékélé</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"L'huile de palme est de très bonne qualité, pure et naturelle. On sent la différence avec les autres marques. Et le manioc était frais, livré parfaitement. Merci SombaMarket !"</p>
+                <div class="review-product">✅ Achat vérifié : Huile de Palme + Manioc</div>
+                <div class="review-date">Il y a 1 mois</div>
+            </div>
+
+            <!-- Avis 6 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#C62828,#B71C1C);">RD</div>
+                    <div>
+                        <div class="reviewer-name">Richard Diaboukana</div>
+                        <div class="reviewer-location">📍 Pointe-Noire, Mvou-Mvou</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Je commande régulièrement sur SombaMarket. Toujours satisfait ! Les prix sont honnêtes, la qualité est au rendez-vous et la livraison à Pointe-Noire se passe très bien."</p>
+                <div class="review-product">✅ Achat vérifié : Poisson Salé + Safou</div>
+                <div class="review-date">Il y a 1 mois</div>
+            </div>
+
+            <!-- Avis 7 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar" style="background: linear-gradient(135deg,#F57F17,#E65100);">GM</div>
+                    <div>
+                        <div class="reviewer-name">Grâce Mountou</div>
+                        <div class="reviewer-location">📍 Brazzaville, Talangaï</div>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Le cuiseur à œufs a changé ma vie ! Avant je ratais toujours mes œufs. Maintenant c'est parfait à chaque fois. Ma famille adore ! Et la promotion était vraiment intéressante !"</p>
+                <div class="review-product">✅ Achat vérifié : Cuiseur à Œufs 7-en-1</div>
+                <div class="review-date">Il y a 5 jours</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h3>🛍️ SombaMarket</h3>
+                <p>Commerce Congolais de Qualité</p>
+                <p>🇨🇬 Made in Congo</p>
+                <p style="margin-top:0.5rem; font-style:italic; color:rgba(255,255,255,0.6);">"Achetez Malin, Vivez Mieux"</p>
+            </div>
+            <div class="footer-col">
+                <h3>📞 Contact</h3>
+                <a href="tel:+242065137926">📱 065 137 926</a>
+                <a href="https://wa.me/242056580428">💬 WhatsApp: 056 580 428</a>
+                <p>📍 Brazzaville, Congo</p>
+            </div>
+            <div class="footer-col">
+                <h3>🗂️ Catégories</h3>
+                <a href="#">🍽️ Aliments</a>
+                <a href="#">💄 Cosmétique</a>
+                <a href="#">👔 Habillement</a>
+                <a href="#">⚕️ Santé</a>
+                <a href="#">⚡ Énergies</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SombaMarket — Tous droits réservés — 🇨🇬 Brazzaville, République du Congo</p>
+            <p style="margin-top:0.5rem;">
+                <a onclick="openAdminLogin()" style="color:rgba(255,255,255,0.2); font-size:0.7rem; cursor:pointer; text-decoration:none; user-select:none;">⚙</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const WHATSAPP_NUMBER = '242056580428';
+        let currentPrice = 0;
+        let currentCategory = 'all';
+
+        const subcatsData = {
+            aliments:      ['Tous','Équipements','Huiles & Graisses','Féculents','Protéines','Fruits'],
+            cosmetique:    ['Tous','Soins visage','Soins corps','Cheveux','Maquillage','Parfums'],
+            habillement:   ['Tous','Hommes','Femmes','Enfants','Pagne Congolais','Chaussures'],
+            sante:         ['Tous','Médicaments','Plantes médicinales','Suppléments','Hygiène'],
+            energie:       ['Tous','Énergie solaire','Générateurs','Batteries','Carburants'],
+            construction:  ['Tous','Ciment & Béton','Bois','Fer & Acier','Peinture','Outils'],
+            automobile:    ['Tous','Pièces détachées','Pneus','Huiles auto','Accessoires'],
+        };
+
+        // Scroll horizontal produits
+        function scrollProducts(dir) {
+            const el = document.getElementById('productsContainer');
+            el.scrollBy({ left: dir * 340, behavior: 'smooth' });
+        }
+
+        // Recherche
+        function searchProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        }
+
+        // Filtre catégories
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.cat === cat);
+            });
+
+            // Sous-catégories
+            const bar = document.getElementById('subcatBar');
+            const scroll = document.getElementById('subcatsScroll');
+            if (cat !== 'all' && subcatsData[cat]) {
+                bar.classList.add('active');
+                scroll.innerHTML = subcatsData[cat].map((s,i) =>
+                    `<span class="subcat-tag ${i===0?'active':''}" onclick="filterSubcat('${s}',this)">${s}</span>`
+                ).join('');
+            } else {
+                bar.classList.remove('active');
+            }
+
+            // Filtrer les cartes
+            document.querySelectorAll('.product-card').forEach(card => {
+                const show = cat === 'all' || card.dataset.category === cat;
+                card.style.display = show ? 'block' : 'none';
+                card.style.opacity = show ? '1' : '0';
+            });
+        }
+
+        // Filtre sous-catégories
+        function filterSubcat(subcat, el) {
+            document.querySelectorAll('.subcat-tag').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (card.dataset.category !== currentCategory) return;
+                const show = subcat === 'Tous' || card.innerText.toLowerCase().includes(subcat.toLowerCase());
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Modal commande
+        function openModal(name, price) {
+            currentPrice = parseInt(price);
+            document.getElementById('productName').value = name;
+            document.getElementById('productPrice').value = price;
+            document.getElementById('displayProduct').textContent = name;
+            document.getElementById('quantity').value = 1;
+            document.getElementById('deliveryDate').min = new Date().toISOString().split('T')[0];
+            updateTotal();
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.getElementById('orderForm').reset();
+            document.getElementById('confirmMsg').classList.remove('show');
+        }
+
+        function updateTotal() {
+            const qty = parseInt(document.getElementById('quantity').value) || 1;
+            const total = currentPrice * qty;
+            document.getElementById('totalDisplay').textContent = total.toLocaleString() + ' FCFA';
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const date = document.getElementById('deliveryDate').value;
+            const time = document.getElementById('deliveryTime').value;
+            const qty = document.getElementById('quantity').value;
+            const product = document.getElementById('productName').value;
+            const total = (currentPrice * parseInt(qty)).toLocaleString();
+
+            const msg = `🛍️ *NOUVELLE COMMANDE SOMBAMARKET*
+━━━━━━━━━━━━━━━━━━━━━
+*PRODUIT:* ${product}
+💰 *Prix unitaire:* ${currentPrice.toLocaleString()} FCFA
+📦 *Quantité:* ${qty}
+💵 *TOTAL:* ${total} FCFA
+━━━━━━━━━━━━━━━━━━━━━
+👤 *CLIENT*
+📛 Nom: ${name}
+📞 Tél: ${phone}
+📍 Adresse: ${address}
+━━━━━━━━━━━━━━━━━━━━━
+📅 *LIVRAISON*
+📆 Date: ${date}
+⏰ Heure: ${time}
+━━━━━━━━━━━━━━━━━━━━━
+🇨🇬 *SombaMarket - Achetez Malin, Vivez Mieux*`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+            document.getElementById('confirmMsg').classList.add('show');
+            setTimeout(closeModal, 3000);
+        }
+
+        // Fermer modal en cliquant dehors
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================================
+     ADMIN PANEL - SOMBAMARKET
+     Accès : cliquer sur le logo 5 fois rapidement
+============================================================ -->
+<div id="adminOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; backdrop-filter:blur(8px);">
+  <div id="adminLogin" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border-radius:20px; padding:2.5rem; width:380px; max-width:95vw; box-shadow:0 20px 60px rgba(0,0,0,0.4); border-top:6px solid #1565C0;">
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">🔐</div>
+      <h2 style="font-family:'Playfair Display',serif; color:#0A1628; font-size:1.6rem;">Accès Administrateur</h2>
+      <p style="color:#888; font-size:0.85rem; margin-top:0.3rem;">SombaMarket — Zone sécurisée</p>
+    </div>
+    <div style="margin-bottom:1rem;">
+      <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">Mot de passe</label>
+      <input type="password" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkAdmin()"
+        style="width:100%; padding:0.9rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:1rem; outline:none; transition:all 0.3s;"
+        onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+    </div>
+    <div id="adminError" style="color:#DC241F; font-size:0.85rem; margin-bottom:0.8rem; display:none; text-align:center;">❌ Mot de passe incorrect !</div>
+    <button onclick="checkAdmin()" style="width:100%; background:linear-gradient(135deg,#1565C0,#0D47A1); color:white; border:none; padding:1rem; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer; letter-spacing:1px;">
+      SE CONNECTER
+    </button>
+    <button onclick="closeAdmin()" style="width:100%; background:transparent; border:2px solid #ddd; color:#888; padding:0.7rem; border-radius:12px; font-size:0.9rem; cursor:pointer; margin-top:0.8rem;">
+      Annuler
+    </button>
+  </div>
+
+  <!-- PANEL ADMIN (après connexion) -->
+  <div id="adminPanel" style="display:none; position:absolute; inset:0; overflow-y:auto; padding:2rem;">
+    <div style="max-width:1000px; margin:0 auto;">
+
+      <!-- Header Admin -->
+      <div style="background:linear-gradient(135deg,#0A1628,#1565C0); border-radius:16px; padding:1.5rem 2rem; margin-bottom:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h1 style="font-family:'Playfair Display',serif; color:white; font-size:1.8rem; margin:0;">⚙️ Panneau Admin</h1>
+          <p style="color:#42A5F5; margin:0; font-size:0.9rem;">SombaMarket — Gestion des produits</p>
+        </div>
+        <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.3); color:white; padding:0.6rem 1.5rem; border-radius:50px; cursor:pointer; font-weight:600; transition:all 0.3s;" onmouseover="this.style.background='rgba(220,36,31,0.7)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">✕ Fermer</button>
+      </div>
+
+      <!-- Tabs -->
+      <div style="display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap;">
+        <button class="atab active" onclick="showTab('tab-add')" id="btn-add" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:#1565C0; color:white; cursor:pointer; font-weight:600; font-size:0.9rem;">➕ Ajouter Produit</button>
+        <button class="atab" onclick="showTab('tab-list')" id="btn-list" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:white; color:#1565C0; cursor:pointer; font-weight:600; font-size:0.9rem;">📦 Mes Produits</button>
+        <button class="atab" onclick="showTab('tab-promo')" id="btn-promo" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:white; color:#1565C0; cursor:pointer; font-weight:600; font-size:0.9rem;">🔥 Promotions</button>
+      </div>
+
+      <!-- TAB AJOUTER PRODUIT -->
+      <div id="tab-add">
+        <div style="background:white; border-radius:16px; padding:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+          <h3 style="font-family:'Playfair Display',serif; color:#0A1628; margin-bottom:1.5rem; font-size:1.4rem;">➕ Ajouter un nouveau produit</h3>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">📝 Nom du produit *</label>
+              <input type="text" id="p-name" placeholder="Ex: Cuiseur à Œufs 7-en-1" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🗂️ Catégorie *</label>
+              <select id="p-cat" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif; background:white;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+                <option value="">-- Choisir --</option>
+                <option value="aliments">🍽️ Aliments</option>
+                <option value="cosmetique">💄 Cosmétique</option>
+                <option value="habillement">👔 Habillement</option>
+                <option value="sante">⚕️ Santé</option>
+                <option value="energie">⚡ Énergies</option>
+                <option value="construction">🏗️ Construction</option>
+                <option value="automobile">🚗 Automobile</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🏷️ Sous-catégorie</label>
+              <input type="text" id="p-subcat" placeholder="Ex: equipements, huiles..." style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">💰 Prix (FCFA) *</label>
+              <input type="number" id="p-price" placeholder="Ex: 12500" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🏷️ Ancien prix barré (FCFA)</label>
+              <input type="number" id="p-oldprice" placeholder="Ex: 15000 (optionnel)" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">📄 Description *</label>
+              <textarea id="p-desc" rows="3" placeholder="Décrivez votre produit en détail..." style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif; resize:vertical;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'"></textarea>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">⭐ Importance du produit</label>
+              <input type="text" id="p-importance" placeholder="Ex: Idéal pour toute la famille, économise 15 min chaque matin..." style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">📖 Mode d'emploi</label>
+              <textarea id="p-manual" rows="2" placeholder="Étapes d'utilisation, conservation, précautions..." style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif; resize:vertical;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'"></textarea>
+            </div>
+
+            <!-- IMAGE URL -->
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🖼️ URL de l'image *</label>
+              <div style="display:flex; gap:0.5rem;">
+                <input type="url" id="p-img" placeholder="https://i.imgur.com/votre-image.jpg" style="flex:1; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'" oninput="previewImg()">
+                <button onclick="window.open('https://imgbb.com','_blank')" style="background:#E3F2FD; border:2px solid #1565C0; color:#1565C0; padding:0 1rem; border-radius:10px; cursor:pointer; font-weight:600; font-size:0.8rem; white-space:nowrap;">📤 Uploader</button>
+              </div>
+              <p style="color:#888; font-size:0.78rem; margin-top:0.3rem;">💡 Uploadez sur <strong>imgbb.com</strong> puis copiez le lien direct ici</p>
+              <div id="imgPreview" style="margin-top:0.8rem; display:none;">
+                <img id="imgPreviewEl" src="" style="max-width:200px; max-height:150px; border-radius:10px; border:2px solid #E3F2FD; object-fit:cover;">
+              </div>
+            </div>
+
+            <!-- VIDEO URL -->
+            <div style="grid-column:1/-1;">
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🎬 URL Vidéo YouTube (optionnel)</label>
+              <input type="url" id="p-video" placeholder="https://www.youtube.com/watch?v=XXXXX" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              <p style="color:#888; font-size:0.78rem; margin-top:0.3rem;">💡 Copiez l'URL de votre vidéo YouTube de démonstration</p>
+            </div>
+
+            <!-- BADGE -->
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">🏷️ Badge produit</label>
+              <select id="p-badge" style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif; background:white;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+                <option value="⚡ Produit Gagnant">⚡ Produit Gagnant</option>
+                <option value="🔥 Promo">🔥 Promo</option>
+                <option value="🌿 Naturel">🌿 Naturel</option>
+                <option value="🇨🇬 Local">🇨🇬 Local</option>
+                <option value="⭐ Nouveau">⭐ Nouveau</option>
+                <option value="💎 Premium">💎 Premium</option>
+                <option value="🔥 Best-seller">🔥 Best-seller</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-weight:600; color:#0A1628; font-size:0.9rem; display:block; margin-bottom:0.4rem;">📦 Unité (optionnel)</label>
+              <input type="text" id="p-unit" placeholder="Ex: / Litre, / Kg, / Unité..." style="width:100%; padding:0.8rem 1rem; border:2px solid #E3F2FD; border-radius:10px; font-size:0.95rem; outline:none; font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+            </div>
+
+          </div>
+
+          <!-- Bouton Ajouter -->
+          <button onclick="addProduct()" style="width:100%; margin-top:1.5rem; background:linear-gradient(135deg,#1565C0,#0D47A1); color:white; border:none; padding:1.1rem; border-radius:12px; font-size:1.1rem; font-weight:700; cursor:pointer; letter-spacing:1px; transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(21,101,192,0.4)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+            ➕ AJOUTER CE PRODUIT AU SITE
+          </button>
+          <div id="addSuccess" style="display:none; background:#E8F5E9; border:2px solid #4CAF50; color:#2E7D32; padding:1rem; border-radius:10px; text-align:center; margin-top:1rem; font-weight:600;">
+            ✅ Produit ajouté avec succès ! Fermez l'admin pour voir le résultat.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB MES PRODUITS -->
+      <div id="tab-list" style="display:none;">
+        <div style="background:white; border-radius:16px; padding:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <h3 style="font-family:'Playfair Display',serif; color:#0A1628; font-size:1.4rem; margin:0;">📦 Tous mes produits</h3>
+            <span id="productCount" style="background:#E3F2FD; color:#1565C0; padding:0.4rem 1rem; border-radius:50px; font-weight:600; font-size:0.9rem;"></span>
+          </div>
+          <div id="productList" style="display:flex; flex-direction:column; gap:1rem;"></div>
+        </div>
+      </div>
+
+      <!-- TAB PROMOTIONS -->
+      <div id="tab-promo" style="display:none;">
+        <div style="background:white; border-radius:16px; padding:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+          <h3 style="font-family:'Playfair Display',serif; color:#0A1628; font-size:1.4rem; margin-bottom:1.5rem;">🔥 Gérer les promotions</h3>
+
+          <div style="background:#FFF3E0; border:2px solid #FF9800; border-radius:12px; padding:1.2rem; margin-bottom:1.5rem;">
+            <h4 style="color:#E65100; margin-bottom:0.8rem;">📢 Texte du bandeau défilant</h4>
+            <textarea id="ticker-text" rows="4" style="width:100%; padding:0.8rem; border:2px solid #FFB74D; border-radius:8px; font-size:0.9rem; outline:none; font-family:Inter,sans-serif; resize:vertical;" placeholder="Ajoutez vos messages promotionnels ici, un par ligne...">🔥 PROMOTION LIMITÉE — Profitez-en maintenant avant la fin du stock !
+🚚 Livraison rapide à Brazzaville et Pointe-Noire
+💥 -17% sur le Cuiseur à Œufs 7-en-1 — Offre valable ce mois uniquement !
+📦 Commandez maintenant, livré chez vous sous 24h à Brazzaville</textarea>
+            <button onclick="updateTicker()" style="margin-top:0.8rem; background:#FF9800; border:none; color:white; padding:0.7rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:600;">🔄 Mettre à jour le bandeau</button>
+          </div>
+
+          <div style="background:#E8F5E9; border:2px solid #4CAF50; border-radius:12px; padding:1.2rem;">
+            <h4 style="color:#2E7D32; margin-bottom:0.8rem;">🚚 Zones de livraison</h4>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="livrBrazza" checked style="width:18px; height:18px; accent-color:#1565C0;">
+                <span style="font-weight:600;">Brazzaville</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="livrPn" checked style="width:18px; height:18px; accent-color:#1565C0;">
+                <span style="font-weight:600;">Pointe-Noire</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="livrDolisie" style="width:18px; height:18px; accent-color:#1565C0;">
+                <span style="font-weight:600;">Dolisie</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="livrNkay" style="width:18px; height:18px; accent-color:#1565C0;">
+                <span style="font-weight:600;">Nkayi</span>
+              </label>
+            </div>
+            <button onclick="alert('Zones de livraison sauvegardées !')" style="margin-top:0.8rem; background:#4CAF50; border:none; color:white; padding:0.7rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:600;">💾 Sauvegarder</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== MOT DE PASSE ADMIN =====
+const ADMIN_PASSWORD = 'somba2026';
+
+// ===== STOCKAGE PRODUITS =====
+let adminProducts = JSON.parse(localStorage.getItem('sombaProducts') || '[]');
+
+// ===== ACCÈS ADMIN =====
+// Via URL: ajoutez ?admin=1 à la fin de votre URL
+if (window.location.search.includes('admin=1')) {
+    window.addEventListener('load', function(){ setTimeout(openAdminLogin, 500); });
+}
+
+// ===== ACCÈS ADMIN (5 clics sur le logo) =====
+let logoClicks = 0;
+let logoTimer = null;
+document.querySelector('.logo-section').addEventListener('click', function() {
+    logoClicks++;
+    if (logoTimer) clearTimeout(logoTimer);
+    logoTimer = setTimeout(() => logoClicks = 0, 2000);
+    if (logoClicks >= 5) {
+        logoClicks = 0;
+        openAdminLogin();
+    }
+});
+
+function openAdminLogin() {
+    document.getElementById('adminOverlay').style.display = 'block';
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminPass').value = '';
+    document.getElementById('adminError').style.display = 'none';
+    setTimeout(() => document.getElementById('adminPass').focus(), 100);
+}
+
+function checkAdmin() {
+    const pass = document.getElementById('adminPass').value.trim();
+    console.log('Mot de passe saisi:', pass, '| Attendu:', ADMIN_PASSWORD);
+    if (pass === ADMIN_PASSWORD) {
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        renderProductList();
+        document.getElementById('productCount').textContent = adminProducts.length + ' produits';
+    } else {
+        document.getElementById('adminError').style.display = 'block';
+        document.getElementById('adminPass').value = '';
+        document.getElementById('adminPass').focus();
+    }
+}
+
+function closeAdmin() {
+    document.getElementById('adminOverlay').style.display = 'none';
+}
+
+// Fermer en cliquant dehors
+document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+});
+
+// ===== TABS =====
+function showTab(tabId) {
+    ['tab-add','tab-list','tab-promo'].forEach(t => {
+        document.getElementById(t).style.display = t === tabId ? 'block' : 'none';
+    });
+    ['btn-add','btn-list','btn-promo'].forEach(b => {
+        const btn = document.getElementById(b);
+        if (b === 'btn-' + tabId.replace('tab-','')) {
+            btn.style.background = '#1565C0';
+            btn.style.color = 'white';
+        } else {
+            btn.style.background = 'white';
+            btn.style.color = '#1565C0';
+        }
+    });
+    if (tabId === 'tab-list') renderProductList();
+}
+
+// ===== PREVIEW IMAGE =====
+function previewImg() {
+    const url = document.getElementById('p-img').value;
+    const preview = document.getElementById('imgPreview');
+    const img = document.getElementById('imgPreviewEl');
+    if (url && url.startsWith('http')) {
+        img.src = url;
+        preview.style.display = 'block';
+    } else {
+        preview.style.display = 'none';
+    }
+}
+
+// ===== AJOUTER PRODUIT =====
+function addProduct() {
+    const name     = document.getElementById('p-name').value.trim();
+    const cat      = document.getElementById('p-cat').value;
+    const subcat   = document.getElementById('p-subcat').value.trim();
+    const price    = document.getElementById('p-price').value;
+    const oldprice = document.getElementById('p-oldprice').value;
+    const desc     = document.getElementById('p-desc').value.trim();
+    const imp      = document.getElementById('p-importance').value.trim();
+    const manual   = document.getElementById('p-manual').value.trim();
+    const img      = document.getElementById('p-img').value.trim();
+    const video    = document.getElementById('p-video').value.trim();
+    const badge    = document.getElementById('p-badge').value;
+    const unit     = document.getElementById('p-unit').value.trim();
+
+    if (!name || !cat || !price || !desc || !img) {
+        alert('❌ Remplissez tous les champs obligatoires (*) !');
+        return;
+    }
+
+    const product = { id: Date.now(), name, cat, subcat, price, oldprice, desc, imp, manual, img, video, badge, unit };
+    adminProducts.push(product);
+    localStorage.setItem('sombaProducts', JSON.stringify(adminProducts));
+
+    // Ajouter la carte au DOM
+    addProductCard(product);
+
+    // Succès
+    document.getElementById('addSuccess').style.display = 'block';
+    setTimeout(() => document.getElementById('addSuccess').style.display = 'none', 3000);
+
+    // Reset form
+    ['p-name','p-subcat','p-price','p-oldprice','p-desc','p-importance','p-manual','p-img','p-video','p-unit'].forEach(id => {
+        document.getElementById(id).value = '';
+    });
+    document.getElementById('imgPreview').style.display = 'none';
+    document.getElementById('p-cat').value = '';
+    document.getElementById('productCount').textContent = adminProducts.length + ' produits';
+}
+
+// ===== CRÉER CARTE PRODUIT DYNAMIQUE =====
+function addProductCard(p) {
+    const container = document.getElementById('productsContainer');
+    const priceDisplay = p.oldprice
+        ? `<span style="display:block;font-size:0.9rem;color:#999;text-decoration:line-through;">${parseInt(p.oldprice).toLocaleString()} FCFA</span>${parseInt(p.price).toLocaleString()} FCFA${p.unit ? ' '+p.unit : ''}`
+        : `${parseInt(p.price).toLocaleString()} FCFA${p.unit ? ' '+p.unit : ''}`;
+
+    const mediaHTML = p.video
+        ? `<iframe width="100%" height="220" src="https://www.youtube.com/embed/${getYTId(p.video)}" frameborder="0" allowfullscreen style="display:block;"></iframe>`
+        : `<img src="${p.img}" alt="${p.name}" style="width:100%;height:220px;object-fit:cover;">`;
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.dataset.category = p.cat;
+    card.dataset.subcategory = p.subcat || '';
+    card.dataset.productId = p.id;
+    card.innerHTML = `
+        <div class="product-media" style="position:relative;">
+            ${mediaHTML}
+            <div class="media-badge">${p.badge || '⭐ Nouveau'}</div>
+        </div>
+        <div class="product-body">
+            <h3 class="product-title">${p.name}</h3>
+            <p class="product-description">${p.desc}</p>
+            ${p.imp ? `<div class="product-importance">⭐ ${p.imp}</div>` : ''}
+            <div class="product-footer">
+                <div class="product-price">${priceDisplay}</div>
+                ${p.manual ? `<button class="manual-btn" onclick="alert('${p.manual.replace(/'/g,"\\'")}')">📖 Manuel</button>` : ''}
+            </div>
+            <button class="order-btn" onclick="openModal('${p.name.replace(/'/g,"\\'")}','${p.price}')">
+                <span>🛒 Commander sur WhatsApp</span>
+            </button>
+        </div>`;
+    container.appendChild(card);
+}
+
+// ===== EXTRAIRE ID YOUTUBE =====
+function getYTId(url) {
+    const m = url.match(/(?:v=|youtu\.be\/)([^&?\/]+)/);
+    return m ? m[1] : '';
+}
+
+// ===== LISTE DES PRODUITS =====
+function renderProductList() {
+    const list = document.getElementById('productList');
+    if (adminProducts.length === 0) {
+        list.innerHTML = '<p style="text-align:center;color:#888;padding:2rem;">Aucun produit ajouté pour l\'instant.</p>';
+        return;
+    }
+    list.innerHTML = adminProducts.map(p => `
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;border:2px solid #E3F2FD;border-radius:12px;flex-wrap:wrap;">
+            <img src="${p.img}" style="width:70px;height:70px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+            <div style="flex:1;min-width:150px;">
+                <div style="font-weight:700;color:#0A1628;">${p.name}</div>
+                <div style="color:#888;font-size:0.85rem;">${p.cat} • ${parseInt(p.price).toLocaleString()} FCFA</div>
+                <div style="color:#1565C0;font-size:0.8rem;">${p.badge}</div>
+            </div>
+            <button onclick="deleteProduct(${p.id})" style="background:#FFEBEE;border:2px solid #EF9A9A;color:#C62828;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.85rem;">🗑️ Supprimer</button>
+        </div>
+    `).join('');
+}
+
+// ===== SUPPRIMER PRODUIT =====
+function deleteProduct(id) {
+    if (!confirm('Supprimer ce produit ?')) return;
+    adminProducts = adminProducts.filter(p => p.id !== id);
+    localStorage.setItem('sombaProducts', JSON.stringify(adminProducts));
+    // Retirer du DOM
+    const card = document.querySelector(`[data-product-id="${id}"]`);
+    if (card) card.remove();
+    renderProductList();
+    document.getElementById('productCount').textContent = adminProducts.length + ' produits';
+}
+
+// ===== METTRE À JOUR TICKER =====
+function updateTicker() {
+    const text = document.getElementById('ticker-text').value;
+    const lines = text.split('\n').filter(l => l.trim());
+    const track = document.querySelector('.ticker-track');
+    const items = lines.map(l => `<span class="ticker-item">${l.trim()}</span><span class="ticker-sep">★</span>`).join('');
+    track.innerHTML = items + items; // double pour le loop
+    alert('✅ Bandeau mis à jour !');
+}
+
+// ===== RECHARGER PRODUITS AU DÉMARRAGE =====
+window.addEventListener('load', function() {
+    adminProducts.forEach(p => addProductCard(p));
+});
+</script>
