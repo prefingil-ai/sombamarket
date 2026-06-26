@@ -1032,7 +1032,7 @@
                                 <span class="old-price">15 000 FCFA</span>
                                 12 500 FCFA
                             </div>
-                            <button class="manual-btn" onclick="alert('Mode d\'emploi: Placez les oeufs (max 7). Ajoutez l\'eau selon cuisson. Branchez et appuyez. Attendez le signal (10-15 min). Plongez dans eau froide. Nettoyez après usage.')">📖 Manuel</button>
+                            <button class="manual-btn" onclick="openFiche('Cuiseur à Œufs Électrique 7-en-1', '12500')">📖 Manuel</button>
                         </div>
                         <button class="order-btn" onclick="openModal('Cuiseur à Œufs Électrique 7-en-1','12500')">
                             <span>🛒 Commander sur WhatsApp</span>
@@ -1535,7 +1535,7 @@
         // ===== DONNÉES PRODUITS POUR LA FICHE =====
         const produitsData = {
             'Cuiseur à Œufs Électrique 7-en-1': {
-                img: document.querySelector('[alt="Cuiseur à Oeufs"]') ? document.querySelector('[alt="Cuiseur à Oeufs"]').src : '',
+                img: '',
                 desc: "Préparez un petit-déjeuner parfait en quelques minutes sans surveillance ! Ce cuiseur électrique intelligent cuit jusqu'à 7 œufs simultanément - durs, mollets ou pochés selon vos préférences. Fini les œufs trop cuits ou à moitié crus ! Arrêt automatique, aucun risque de brûlure.",
                 importance: "Gagnez 15 minutes chaque matin ! Plus besoin de surveiller la casserole. Cuisson parfaite garantie à chaque fois. Économise l'électricité par rapport à la cuisinière. Idéal pour les familles, étudiants et professionnels occupés à Brazzaville.",
                 manual: [
@@ -1551,7 +1551,7 @@
                 orderPrice: '12500'
             },
             'Huile de Palme Premium': {
-                img: document.querySelector('[alt="Huile de Palme"]') ? document.querySelector('[alt="Huile de Palme"]').src : '',
+                img: '',
                 desc: "Huile de palme 100% naturelle, extraite artisanalement dans les plantations congolaises. Qualité supérieure, riche en vitamines et nutriments essentiels pour toute la famille. Goût authentique et saveur traditionnelle incomparable.",
                 importance: "Produit de base essentiel pour la cuisine congolaise. Source naturelle de vitamine A et antioxydants. Améliore le goût de tous vos plats traditionnels. Produit local qui soutient les agriculteurs congolais.",
                 manual: [
@@ -1566,7 +1566,7 @@
                 orderPrice: '12500'
             },
             'Manioc Frais Premium': {
-                img: document.querySelector('[alt="Manioc Frais"]') ? document.querySelector('[alt="Manioc Frais"]').src : '',
+                img: '',
                 desc: "Manioc frais de première qualité, cultivé dans nos fermes biologiques congolaises. Récolté à maturité parfaite pour garantir goût et texture exceptionnels. Livré frais directement chez vous.",
                 importance: "Aliment de base indispensable, riche en glucides complexes. Source d'énergie durable pour toute la famille. Ingrédient clé pour fufu, chikwangue et nombreux plats congolais. Soutient l'agriculture locale congolaise.",
                 manual: [
@@ -1582,7 +1582,7 @@
                 orderPrice: '3500'
             },
             'Poisson Salé Artisanal': {
-                img: document.querySelector('[alt="Poisson Salé"]') ? document.querySelector('[alt="Poisson Salé"]').src : '',
+                img: '',
                 desc: "Poisson du fleuve Congo, salé et séché selon les méthodes traditionnelles ancestrales. Saveur authentique et conservation optimale garanties. Un incontournable de la cuisine congolaise.",
                 importance: "Excellente source de protéines et d'oméga-3. Ingrédient clé pour les sauces, grillades et ragoûts congolais. Conservation longue durée sans réfrigérateur. Saveur traditionnelle irremplaçable.",
                 manual: [
@@ -1598,7 +1598,7 @@
                 orderPrice: '8000'
             },
             'Safou Frais': {
-                img: document.querySelector('[alt="Safou"]') ? document.querySelector('[alt="Safou"]').src : '',
+                img: '',
                 desc: "Safous fraîchement cueillis, riches en huiles naturelles et saveurs délicates. Fruit tropical prisé pour sa valeur nutritionnelle exceptionnelle. Cueillis à maturité parfaite dans les forêts congolaises.",
                 importance: "Riche en lipides sains, vitamines et minéraux essentiels. Délice tropical aux multiples bienfaits pour la santé. Fruit 100% naturel sans produits chimiques. Énergie naturelle pour toute la famille.",
                 manual: [
@@ -1618,11 +1618,25 @@
         // ===== OUVRIR FICHE PRODUIT =====
         function openFiche(productName, price) {
             const data = produitsData[productName];
-            if (!data) return;
+            if (!data) {
+                console.log('Produit non trouvé:', productName);
+                return;
+            }
+
+            // Récupérer l'image depuis la carte produit dans le DOM
+            const cards = document.querySelectorAll('.product-card');
+            let imgSrc = '';
+            cards.forEach(card => {
+                const title = card.querySelector('.product-title');
+                if (title && title.textContent.trim() === productName.trim()) {
+                    const img = card.querySelector('img');
+                    if (img) imgSrc = img.src;
+                }
+            });
 
             // Remplir les infos
             document.getElementById('ficheTitle').textContent = productName;
-            document.getElementById('ficheImg').src = data.img || '';
+            document.getElementById('ficheImg').src = imgSrc || data.img || '';
             document.getElementById('ficheDesc').textContent = data.desc;
             document.getElementById('ficheImp').textContent = data.importance;
             document.getElementById('fichePrice').textContent = data.price;
