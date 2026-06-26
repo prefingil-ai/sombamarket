@@ -1056,7 +1056,7 @@
                         </div>
                         <div class="product-footer">
                             <div class="product-price">12 500 FCFA</div>
-                            <button class="manual-btn" onclick="alert('Conservation: température ambiante. Idéal pour cuisson et assaisonnement. Durée: 12 mois.')">📖 Manuel</button>
+                            <button class="manual-btn" onclick="openFiche('Huile de Palme Premium', '12500')">📖 Manuel</button>
                         </div>
                         <button class="order-btn" onclick="openModal('Huile de Palme Premium','12500')">
                             <span>🛒 Commander sur WhatsApp</span>
@@ -1080,7 +1080,7 @@
                         </div>
                         <div class="product-footer">
                             <div class="product-price">3 500 FCFA / Kg</div>
-                            <button class="manual-btn" onclick="alert('Éplucher, laver et faire bouillir 30-40 min. Conservation: 3-5 jours au frais.')">📖 Manuel</button>
+                            <button class="manual-btn" onclick="openFiche('Manioc Frais Premium', '3500')">📖 Manuel</button>
                         </div>
                         <button class="order-btn" onclick="openModal('Manioc Frais Premium','3500')">
                             <span>🛒 Commander sur WhatsApp</span>
@@ -1104,7 +1104,7 @@
                         </div>
                         <div class="product-footer">
                             <div class="product-price">8 000 FCFA / 500g</div>
-                            <button class="manual-btn" onclick="alert('Dessaler 2-3 heures dans eau froide. Idéal pour sauces et grillades. Conservation: 6 mois lieu sec.')">📖 Manuel</button>
+                            <button class="manual-btn" onclick="openFiche('Poisson Salé Artisanal', '8000')">📖 Manuel</button>
                         </div>
                         <button class="order-btn" onclick="openModal('Poisson Salé Artisanal','8000')">
                             <span>🛒 Commander sur WhatsApp</span>
@@ -1128,7 +1128,7 @@
                         </div>
                         <div class="product-footer">
                             <div class="product-price">6 500 FCFA / Kg</div>
-                            <button class="manual-btn" onclick="alert('Faire bouillir 10-15 min ou griller. Consommer chaud avec sel. Conservation: 5 jours au réfrigérateur.')">📖 Manuel</button>
+                            <button class="manual-btn" onclick="openFiche('Safou Frais', '6500')">📖 Manuel</button>
                         </div>
                         <button class="order-btn" onclick="openModal('Safou Frais','6500')">
                             <span>🛒 Commander sur WhatsApp</span>
@@ -1139,6 +1139,59 @@
             </div><!-- fin products-horizontal -->
         </div><!-- fin wrapper -->
     </section>
+
+
+    <!-- ===== FICHE PRODUIT ===== -->
+    <div class="fiche-modal" id="ficheModal">
+        <div class="fiche-content">
+            <div class="fiche-header">
+                <h2 id="ficheTitle">Nom du produit</h2>
+                <button class="fiche-close" onclick="closeFiche()">✕</button>
+            </div>
+            <img id="ficheImg" class="fiche-img" src="" alt="Produit">
+            <div class="fiche-body">
+
+                <!-- Description -->
+                <div class="fiche-section">
+                    <div class="fiche-section-title">
+                        <span>📄</span> Description
+                    </div>
+                    <p id="ficheDesc"></p>
+                </div>
+
+                <!-- Importance -->
+                <div class="fiche-section" id="ficheImpSection">
+                    <div class="fiche-section-title">
+                        <span>⭐</span> Pourquoi ce produit ?
+                    </div>
+                    <div class="fiche-importance" id="ficheImp"></div>
+                </div>
+
+                <!-- Mode d'emploi -->
+                <div class="fiche-section" id="ficheManSection">
+                    <div class="fiche-section-title">
+                        <span>📖</span> Mode d'emploi
+                    </div>
+                    <div class="fiche-manual-steps" id="ficheManual"></div>
+                </div>
+
+                <!-- Prix + Bouton -->
+                <div class="fiche-price-box">
+                    <div>
+                        <div class="fiche-price-label">Prix</div>
+                        <div class="fiche-price-old" id="ficheOldPrice"></div>
+                        <div class="fiche-price-value" id="fichePrice"></div>
+                    </div>
+                    <div style="font-size:2rem;">🛍️</div>
+                </div>
+                <button class="fiche-order-btn" id="ficheOrderBtn" onclick="">
+                    <span style="font-size:1.3rem;">💬</span>
+                    Commander sur WhatsApp
+                </button>
+
+            </div>
+        </div>
+    </div>
 
     <!-- ===== MODAL COMMANDE ===== -->
     <div class="modal" id="orderModal">
@@ -1477,6 +1530,131 @@
             document.getElementById('confirmMsg').classList.add('show');
             setTimeout(closeModal, 3000);
         }
+
+
+        // ===== DONNÉES PRODUITS POUR LA FICHE =====
+        const produitsData = {
+            'Cuiseur à Œufs Électrique 7-en-1': {
+                img: document.querySelector('[alt="Cuiseur à Oeufs"]') ? document.querySelector('[alt="Cuiseur à Oeufs"]').src : '',
+                desc: "Préparez un petit-déjeuner parfait en quelques minutes sans surveillance ! Ce cuiseur électrique intelligent cuit jusqu'à 7 œufs simultanément - durs, mollets ou pochés selon vos préférences. Fini les œufs trop cuits ou à moitié crus ! Arrêt automatique, aucun risque de brûlure.",
+                importance: "Gagnez 15 minutes chaque matin ! Plus besoin de surveiller la casserole. Cuisson parfaite garantie à chaque fois. Économise l'électricité par rapport à la cuisinière. Idéal pour les familles, étudiants et professionnels occupés à Brazzaville.",
+                manual: [
+                    "Placez jusqu'à 7 œufs dans les emplacements prévus",
+                    "Ajoutez la quantité d'eau indiquée selon la cuisson souhaitée (mollet = peu d'eau, dur = plus d'eau)",
+                    "Branchez l'appareil et appuyez sur le bouton de démarrage",
+                    "Attendez le signal sonore : 10 à 15 minutes selon la cuisson",
+                    "Retirez les œufs et plongez-les dans de l'eau froide",
+                    "Nettoyez avec une éponge humide après chaque utilisation"
+                ],
+                price: '12 500 FCFA',
+                oldPrice: '15 000 FCFA',
+                orderPrice: '12500'
+            },
+            'Huile de Palme Premium': {
+                img: document.querySelector('[alt="Huile de Palme"]') ? document.querySelector('[alt="Huile de Palme"]').src : '',
+                desc: "Huile de palme 100% naturelle, extraite artisanalement dans les plantations congolaises. Qualité supérieure, riche en vitamines et nutriments essentiels pour toute la famille. Goût authentique et saveur traditionnelle incomparable.",
+                importance: "Produit de base essentiel pour la cuisine congolaise. Source naturelle de vitamine A et antioxydants. Améliore le goût de tous vos plats traditionnels. Produit local qui soutient les agriculteurs congolais.",
+                manual: [
+                    "Conserver à température ambiante dans un endroit sec",
+                    "Idéal pour la cuisson, la friture et l'assaisonnement",
+                    "Utiliser à feu moyen pour préserver les nutriments",
+                    "Refermer hermétiquement après chaque utilisation",
+                    "Durée de conservation : 12 mois dans de bonnes conditions"
+                ],
+                price: '12 500 FCFA',
+                oldPrice: '',
+                orderPrice: '12500'
+            },
+            'Manioc Frais Premium': {
+                img: document.querySelector('[alt="Manioc Frais"]') ? document.querySelector('[alt="Manioc Frais"]').src : '',
+                desc: "Manioc frais de première qualité, cultivé dans nos fermes biologiques congolaises. Récolté à maturité parfaite pour garantir goût et texture exceptionnels. Livré frais directement chez vous.",
+                importance: "Aliment de base indispensable, riche en glucides complexes. Source d'énergie durable pour toute la famille. Ingrédient clé pour fufu, chikwangue et nombreux plats congolais. Soutient l'agriculture locale congolaise.",
+                manual: [
+                    "Éplucher soigneusement le manioc avec un couteau",
+                    "Laver abondamment à l'eau propre",
+                    "Faire bouillir dans de l'eau salée pendant 30 à 40 minutes",
+                    "Peut être transformé en fufu, chikwangue ou consommé bouilli",
+                    "Conservation : 3 à 5 jours au réfrigérateur",
+                    "Ne pas laisser à température ambiante plus de 24h"
+                ],
+                price: '3 500 FCFA / Kg',
+                oldPrice: '',
+                orderPrice: '3500'
+            },
+            'Poisson Salé Artisanal': {
+                img: document.querySelector('[alt="Poisson Salé"]') ? document.querySelector('[alt="Poisson Salé"]').src : '',
+                desc: "Poisson du fleuve Congo, salé et séché selon les méthodes traditionnelles ancestrales. Saveur authentique et conservation optimale garanties. Un incontournable de la cuisine congolaise.",
+                importance: "Excellente source de protéines et d'oméga-3. Ingrédient clé pour les sauces, grillades et ragoûts congolais. Conservation longue durée sans réfrigérateur. Saveur traditionnelle irremplaçable.",
+                manual: [
+                    "Dessaler dans de l'eau froide pendant 2 à 3 heures",
+                    "Changer l'eau 2 fois pendant le dessalage",
+                    "Rincer abondamment avant la cuisson",
+                    "Idéal pour les sauces, grillades et ragoûts",
+                    "Conservation : 6 mois dans un endroit sec et aéré",
+                    "Éviter l'humidité pour préserver la qualité"
+                ],
+                price: '8 000 FCFA / 500g',
+                oldPrice: '',
+                orderPrice: '8000'
+            },
+            'Safou Frais': {
+                img: document.querySelector('[alt="Safou"]') ? document.querySelector('[alt="Safou"]').src : '',
+                desc: "Safous fraîchement cueillis, riches en huiles naturelles et saveurs délicates. Fruit tropical prisé pour sa valeur nutritionnelle exceptionnelle. Cueillis à maturité parfaite dans les forêts congolaises.",
+                importance: "Riche en lipides sains, vitamines et minéraux essentiels. Délice tropical aux multiples bienfaits pour la santé. Fruit 100% naturel sans produits chimiques. Énergie naturelle pour toute la famille.",
+                manual: [
+                    "Laver soigneusement les safous avant consommation",
+                    "Faire bouillir dans de l'eau pendant 10 à 15 minutes",
+                    "OU griller légèrement sur feu doux",
+                    "Consommer chaud avec du sel selon le goût",
+                    "Conservation : 5 jours au réfrigérateur",
+                    "Ne pas consommer crus - toujours cuire avant de manger"
+                ],
+                price: '6 500 FCFA / Kg',
+                oldPrice: '',
+                orderPrice: '6500'
+            }
+        };
+
+        // ===== OUVRIR FICHE PRODUIT =====
+        function openFiche(productName, price) {
+            const data = produitsData[productName];
+            if (!data) return;
+
+            // Remplir les infos
+            document.getElementById('ficheTitle').textContent = productName;
+            document.getElementById('ficheImg').src = data.img || '';
+            document.getElementById('ficheDesc').textContent = data.desc;
+            document.getElementById('ficheImp').textContent = data.importance;
+            document.getElementById('fichePrice').textContent = data.price;
+            document.getElementById('ficheOldPrice').textContent = data.oldPrice;
+
+            // Mode d'emploi en étapes
+            const manualDiv = document.getElementById('ficheManual');
+            manualDiv.innerHTML = data.manual.map((step, i) => `
+                <div class="fiche-step">
+                    <div class="fiche-step-num">${i+1}</div>
+                    <p>${step}</p>
+                </div>
+            `).join('');
+
+            // Bouton commander
+            document.getElementById('ficheOrderBtn').onclick = function() {
+                closeFiche();
+                openModal(productName, data.orderPrice);
+            };
+
+            // Afficher
+            document.getElementById('ficheModal').classList.add('active');
+        }
+
+        function closeFiche() {
+            document.getElementById('ficheModal').classList.remove('active');
+        }
+
+        // Fermer en cliquant dehors
+        document.getElementById('ficheModal').addEventListener('click', function(e) {
+            if (e.target === this) closeFiche();
+        });
 
         // Fermer modal en cliquant dehors
         document.getElementById('orderModal').addEventListener('click', function(e) {
