@@ -593,165 +593,240 @@
         .product-footer,
 
         /* ===== PAGE DETAIL PRODUIT ===== */
+        /* ===== PAGE DETAIL PRODUIT - PLEIN ÉCRAN ===== */
         .detail-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(10,22,40,0.92);
+            background: rgba(10,22,40,0.95);
             z-index: 3000;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
         .detail-modal.active {
             display: block;
-            animation: fadeIn 0.3s;
+            animation: fadeIn 0.25s ease;
         }
         .detail-wrap {
-            max-width: 860px;
-            margin: 1.5rem auto;
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 100vh;
             background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
         }
         .detail-close-btn {
             position: fixed;
-            top: 1rem; right: 1rem;
+            top: 1rem;
+            right: 1rem;
             background: white;
             border: none;
-            width: 46px; height: 46px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 3001;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 700;
         }
-        .detail-close-btn:hover { background: #DC241F; color: white; transform: rotate(90deg); }
+        .detail-close-btn:hover {
+            background: #DC241F;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Colonne gauche - IMAGE PLEIN CADRAN */
         .detail-gallery {
-            background: #F0F7FF;
-            padding: 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            background: #F7FAFF;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 2rem;
             gap: 1rem;
+            border-right: 1px solid #EEF2F8;
         }
         .detail-main-img {
-            max-width: 100%;
-            max-height: 380px;
+            width: 100%;
+            height: 70vh;
             object-fit: contain;
             border-radius: 16px;
             background: white;
-            padding: 1rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
         .detail-video-wrap {
             width: 100%;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .detail-info { padding: 2rem; }
+        .detail-img-label {
+            font-size: 0.75rem;
+            color: #9AAFCA;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Colonne droite - INFOS */
+        .detail-info {
+            padding: 3rem 2.5rem;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
         .detail-badge {
             display: inline-block;
             background: #E3F2FD;
             color: #1565C0;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.78rem;
+            padding: 0.35rem 1rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         .detail-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: #0A1628;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
         }
-        .detail-price-row {
+        .detail-sku {
+            font-size: 0.72rem;
+            color: #9AAFCA;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .detail-rating-row {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .detail-stars { color: #FFB300; font-size: 0.9rem; }
+        .detail-reviews { font-size: 0.82rem; color: #9AAFCA; }
+        .detail-price-row {
+            display: flex;
+            align-items: flex-end;
             gap: 1rem;
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            padding: 1.2rem;
+            background: #F7FAFF;
+            border-radius: 12px;
+            border: 1px solid #EEF2F8;
         }
         .detail-price {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2.2rem;
-            color: #1565C0;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #0A1628;
+            letter-spacing: -1px;
+            line-height: 1;
         }
         .detail-old-price {
-            font-size: 1.1rem;
-            color: #aaa;
+            font-size: 1rem;
+            color: #B0B8C4;
             text-decoration: line-through;
+            line-height: 1;
         }
         .detail-promo {
             background: #DC241F;
             color: white;
-            padding: 0.25rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
         .detail-divider {
-            height: 2px;
-            background: #E3F2FD;
-            margin: 1.2rem 0;
+            height: 1px;
+            background: #EEF2F8;
+            margin: 1.5rem 0;
         }
         .detail-section-label {
             font-weight: 700;
-            color: #1565C0;
-            font-size: 0.85rem;
+            color: #1A2B45;
+            font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
         .detail-desc-text {
-            color: #444;
+            color: #555;
             line-height: 1.8;
-            margin-bottom: 1.2rem;
-        }
-        .detail-importance-box {
-            background: #E3F2FD;
-            border-left: 5px solid #1565C0;
-            padding: 1rem 1.2rem;
-            border-radius: 0 12px 12px 0;
-            color: #0A1628;
-            line-height: 1.7;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
         }
-        .detail-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
+        .detail-importance-box {
+            background: #F0F7FF;
+            border-left: 4px solid #1565C0;
+            padding: 1rem 1.2rem;
+            border-radius: 0 10px 10px 0;
+            color: #1A2B45;
+            line-height: 1.7;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+        .detail-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
         .detail-step {
             display: flex;
             align-items: flex-start;
             gap: 0.8rem;
             padding: 0.75rem 1rem;
-            background: #F0F7FF;
-            border-radius: 10px;
+            background: #F7FAFF;
+            border-radius: 8px;
+            border: 1px solid #EEF2F8;
         }
         .detail-step-num {
             background: #1565C0;
             color: white;
-            width: 26px; height: 26px;
-            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             flex-shrink: 0;
         }
-        .detail-step p { margin: 0; color: #333; line-height: 1.5; font-size: 0.92rem; }
+        .detail-step p {
+            margin: 0;
+            color: #444;
+            line-height: 1.5;
+            font-size: 0.88rem;
+        }
         .detail-order-btn {
             width: 100%;
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             border: none;
-            padding: 1.2rem;
-            border-radius: 14px;
-            font-size: 1.1rem;
+            padding: 1.1rem;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -759,10 +834,57 @@
             align-items: center;
             justify-content: center;
             gap: 0.8rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
         }
         .detail-order-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+        }
+        .detail-share-row {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .detail-share-btn {
+            flex: 1;
+            padding: 0.7rem;
+            border: 2px solid #EEF2F8;
+            border-radius: 8px;
+            background: white;
+            color: #1A2B45;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .detail-share-btn:hover {
+            border-color: #1565C0;
+            color: #1565C0;
+        }
+
+        /* Mobile: empiler les colonnes */
+        @media (max-width: 768px) {
+            .detail-wrap {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .detail-gallery {
+                position: relative;
+                height: 55vw;
+                min-height: 250px;
+                padding: 1rem;
+            }
+            .detail-main-img {
+                height: 100%;
+            }
+            .detail-info {
+                max-height: none;
+                padding: 1.5rem;
+            }
         }
         @media (max-width: 768px) {
             .detail-wrap { margin: 0; border-radius: 0; }
@@ -1502,38 +1624,76 @@
 
     <!-- ===== PAGE DETAIL PRODUIT ===== -->
     <div class="detail-modal" id="detailModal">
-        <button class="detail-close-btn" onclick="closeDetail()">✕</button>
+        <button class="detail-close-btn" onclick="closeDetail()" title="Fermer">✕</button>
         <div class="detail-wrap">
+
+            <!-- COLONNE GAUCHE : IMAGE PLEIN CADRAN -->
             <div class="detail-gallery">
+                <div class="detail-img-label">📸 Photo du produit</div>
                 <img id="detailImg" class="detail-main-img" src="" alt="Produit">
                 <div id="detailVideoWrap" class="detail-video-wrap" style="display:none;">
-                    <iframe id="detailVideo" width="100%" height="320" frameborder="0" allowfullscreen></iframe>
+                    <div class="detail-img-label" style="margin-bottom:0.5rem;">🎬 Vidéo de démonstration</div>
+                    <iframe id="detailVideo" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
+
+            <!-- COLONNE DROITE : INFOS -->
             <div class="detail-info">
                 <div id="detailBadge" class="detail-badge"></div>
                 <h2 id="detailTitle" class="detail-title"></h2>
+                <div id="detailSku" class="detail-sku"></div>
+
+                <!-- Rating -->
+                <div class="detail-rating-row">
+                    <span id="detailStars" class="detail-stars">★★★★★</span>
+                    <span id="detailReviews" class="detail-reviews"></span>
+                </div>
+
+                <!-- Prix -->
                 <div class="detail-price-row">
-                    <div id="detailPrice" class="detail-price"></div>
-                    <div id="detailOldPrice" class="detail-old-price"></div>
+                    <div>
+                        <div id="detailOldPrice" class="detail-old-price"></div>
+                        <div id="detailPrice" class="detail-price"></div>
+                    </div>
                     <div id="detailPromo" class="detail-promo" style="display:none;"></div>
                 </div>
+
                 <div class="detail-divider"></div>
+
+                <!-- Description -->
                 <div class="detail-section-label">📄 Description</div>
                 <p id="detailDesc" class="detail-desc-text"></p>
+
+                <!-- Importance -->
                 <div id="detailImpWrap">
                     <div class="detail-section-label">⭐ Pourquoi ce produit ?</div>
                     <div id="detailImp" class="detail-importance-box"></div>
                 </div>
+
                 <div class="detail-divider"></div>
+
+                <!-- Mode d'emploi -->
                 <div id="detailManWrap">
                     <div class="detail-section-label">📖 Mode d'emploi</div>
                     <div id="detailSteps" class="detail-steps"></div>
                 </div>
+
+                <!-- Bouton Commander -->
                 <button class="detail-order-btn" id="detailOrderBtn">
-                    <span style="font-size:1.4rem">💬</span>
+                    <span style="font-size:1.3rem">💬</span>
                     Commander sur WhatsApp
                 </button>
+
+                <!-- Partager -->
+                <div class="detail-share-row">
+                    <button class="detail-share-btn" onclick="shareProduct()">
+                        📤 Partager
+                    </button>
+                    <button class="detail-share-btn" onclick="closeDetail()">
+                        ← Retour
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1730,7 +1890,7 @@
             <div class="footer-col">
                 <h3>📞 Contact</h3>
                 <a href="tel:+242065137926">📱 065 137 926</a>
-                <a href="https://wa.me/242056580428">💬 WhatsApp: 056 580 428</a>
+                <a href="https://wa.me/242065765727">💬 WhatsApp: 065 765 727</a>
                 <p>📍 Brazzaville, Congo</p>
             </div>
             <div class="footer-col">
@@ -1751,7 +1911,7 @@
     </footer>
 
     <script>
-        const WHATSAPP_NUMBER = '242056580428';
+        const WHATSAPP_NUMBER = '242065765727';
         let currentPrice = 0;
         let currentCategory = 'all';
 
@@ -2049,6 +2209,171 @@
         // Fermer en cliquant dehors
         document.getElementById('ficheModal').addEventListener('click', function(e) {
             if (e.target === this) closeFiche();
+        });
+
+
+        // ===== DONNÉES PRODUITS DE BASE =====
+        const detailData = {
+            'Cuiseur à Œufs Électrique 7-en-1': {
+                badge: '🔥 PROMO', sku: 'SKU-CEL-001', stars: '★★★★★', reviews: '(127 avis)',
+                desc: "Préparez un petit-déjeuner parfait en quelques minutes sans surveillance ! Ce cuiseur électrique intelligent cuit jusqu'à 7 œufs simultanément — durs, mollets ou pochés. Arrêt automatique, aucun risque de brûlure. Parfait pour les matins pressés ou toute la famille !",
+                importance: "Gagnez 15 minutes chaque matin ! Plus besoin de surveiller la casserole. Cuisson parfaite garantie à chaque fois. Économise l'électricité par rapport à la cuisinière. Idéal pour les familles, étudiants et professionnels occupés.",
+                manual: ["Placez jusqu'à 7 œufs dans les emplacements","Ajoutez l'eau selon la cuisson souhaitée","Branchez et appuyez sur le bouton","Attendez le signal sonore : 10 à 15 minutes","Plongez les œufs dans l'eau froide","Nettoyez avec une éponge humide après usage"],
+                price: '12 500 FCFA', oldPrice: '15 000 FCFA', orderPrice: '12500', promo: '-17%', video: ''
+            },
+            'Huile de Palme Premium': {
+                badge: '🌿 NATUREL', sku: 'SKU-HDP-002', stars: '★★★★★', reviews: '(89 avis)',
+                desc: "Huile de palme 100% naturelle, extraite artisanalement dans les plantations congolaises. Qualité supérieure, riche en vitamines et nutriments essentiels pour toute la famille.",
+                importance: "Produit de base essentiel pour la cuisine congolaise. Source naturelle de vitamine A et antioxydants. Goût authentique et saveur traditionnelle incomparable.",
+                manual: ["Conserver à température ambiante dans un endroit sec","Utiliser à feu moyen pour préserver les nutriments","Idéal pour cuisson, friture et assaisonnement","Refermer hermétiquement après usage","Conservation : 12 mois"],
+                price: '12 500 FCFA', oldPrice: '', orderPrice: '12500', promo: '', video: ''
+            },
+            'Manioc Frais Premium': {
+                badge: '🇨🇬 LOCAL', sku: 'SKU-MFP-003', stars: '★★★★☆', reviews: '(64 avis)',
+                desc: "Manioc frais de première qualité, cultivé dans nos fermes biologiques congolaises. Récolté à maturité parfaite pour garantir goût et texture exceptionnels.",
+                importance: "Aliment de base indispensable, riche en glucides complexes. Source d'énergie durable pour toute la famille. Ingrédient clé pour fufu, chikwangue et nombreux plats congolais.",
+                manual: ["Éplucher soigneusement avec un couteau","Laver abondamment à l'eau propre","Faire bouillir dans eau salée 30 à 40 minutes","Peut être transformé en fufu ou chikwangue","Conservation : 3 à 5 jours au réfrigérateur"],
+                price: '3 500 FCFA / Kg', oldPrice: '', orderPrice: '3500', promo: '', video: ''
+            },
+            'Poisson Salé Artisanal': {
+                badge: '🐟 ARTISANAL', sku: 'SKU-PSA-004', stars: '★★★★★', reviews: '(52 avis)',
+                desc: "Poisson du fleuve Congo, salé et séché selon les méthodes traditionnelles ancestrales. Saveur authentique et conservation optimale garanties.",
+                importance: "Excellente source de protéines et d'oméga-3. Ingrédient clé pour les sauces, grillades et ragoûts congolais. Conservation longue durée.",
+                manual: ["Dessaler dans de l'eau froide pendant 2 à 3 heures","Changer l'eau 2 fois pendant le dessalage","Rincer abondamment avant la cuisson","Idéal pour sauces, grillades et ragoûts","Conservation : 6 mois dans endroit sec"],
+                price: '8 000 FCFA / 500g', oldPrice: '', orderPrice: '8000', promo: '', video: ''
+            },
+            'Safou Frais': {
+                badge: '🌴 TROPICAL', sku: 'SKU-SF-005', stars: '★★★★☆', reviews: '(41 avis)',
+                desc: "Safous fraîchement cueillis, riches en huiles naturelles et saveurs délicates. Fruit tropical prisé pour sa valeur nutritionnelle exceptionnelle.",
+                importance: "Riche en lipides sains, vitamines et minéraux essentiels. Délice tropical aux multiples bienfaits. Fruit 100% naturel sans produits chimiques.",
+                manual: ["Laver soigneusement avant consommation","Faire bouillir 10 à 15 minutes dans l'eau","OU griller légèrement sur feu doux","Consommer chaud avec du sel","Conservation : 5 jours au réfrigérateur"],
+                price: '6 500 FCFA / Kg', oldPrice: '', orderPrice: '6500', promo: '', video: ''
+            }
+        };
+
+        // ===== OUVRIR DETAIL DEPUIS UNE CARTE STATIQUE =====
+        function openDetailWithImg(productName, el) {
+            const card = el.closest ? el.closest('.product-card') : el;
+            const img = card ? card.querySelector('img') : null;
+            const imgSrc = img ? img.src : '';
+            openDetail(productName, imgSrc);
+        }
+
+        // ===== OUVRIR DETAIL PRODUIT DE BASE =====
+        function openDetail(productName, imgSrc) {
+            const d = detailData[productName];
+            if (!d) return;
+            fillDetail({
+                name: productName, badge: d.badge, sku: d.sku,
+                stars: d.stars, reviews: d.reviews,
+                desc: d.desc, importance: d.importance,
+                manual: d.manual, price: d.price,
+                oldPrice: d.oldPrice, promo: d.promo,
+                video: d.video, img: imgSrc,
+                orderPrice: d.orderPrice
+            });
+        }
+
+        // ===== OUVRIR DETAIL PRODUIT ADMIN =====
+        function openDetailAdmin(productId) {
+            const p = adminProducts.find(x => x.id === productId);
+            if (!p) return;
+            const steps = p.manual
+                ? p.manual.split(/[.\n]/).filter(s => s.trim().length > 3).map(s => s.trim())
+                : [];
+            fillDetail({
+                name: p.name, badge: p.badge || '⭐ Nouveau',
+                sku: 'SKU-' + p.name.slice(0,3).toUpperCase(),
+                stars: '★★★★★', reviews: '(Nouveau)',
+                desc: p.desc, importance: p.imp,
+                manual: steps,
+                price: parseInt(p.price).toLocaleString() + ' FCFA' + (p.unit ? ' ' + p.unit : ''),
+                oldPrice: p.oldprice ? parseInt(p.oldprice).toLocaleString() + ' FCFA' : '',
+                promo: p.oldprice ? 'PROMO' : '',
+                video: p.video || '',
+                img: p.img, orderPrice: p.price
+            });
+        }
+
+        // ===== REMPLIR ET AFFICHER LE MODAL DETAIL =====
+        function fillDetail(d) {
+            document.getElementById('detailBadge').textContent = d.badge || '';
+            document.getElementById('detailTitle').textContent = d.name;
+            document.getElementById('detailSku').textContent = d.sku || '';
+            document.getElementById('detailImg').src = d.img || '';
+            document.getElementById('detailDesc').textContent = d.desc || '';
+            document.getElementById('detailImp').textContent = d.importance || '';
+            document.getElementById('detailPrice').textContent = d.price;
+            document.getElementById('detailOldPrice').textContent = d.oldPrice || '';
+            document.getElementById('detailStars').textContent = d.stars || '★★★★★';
+            document.getElementById('detailReviews').textContent = d.reviews || '';
+
+            // Promo badge
+            const promoEl = document.getElementById('detailPromo');
+            if (d.promo) { promoEl.textContent = d.promo; promoEl.style.display = 'block'; }
+            else { promoEl.style.display = 'none'; }
+
+            // Vidéo YouTube
+            const videoWrap = document.getElementById('detailVideoWrap');
+            const videoEl = document.getElementById('detailVideo');
+            if (d.video) {
+                const ytId = d.video.match(/(?:v=|youtu\.be\/)([^&?\/]+)/);
+                if (ytId) {
+                    videoEl.src = 'https://www.youtube.com/embed/' + ytId[1];
+                    videoWrap.style.display = 'block';
+                } else { videoWrap.style.display = 'none'; }
+            } else { videoWrap.style.display = 'none'; videoEl.src = ''; }
+
+            // Importance
+            document.getElementById('detailImpWrap').style.display = d.importance ? 'block' : 'none';
+
+            // Mode d'emploi en étapes
+            const stepsEl = document.getElementById('detailSteps');
+            if (d.manual && d.manual.length > 0) {
+                stepsEl.innerHTML = d.manual.map((s, i) => `
+                    <div class="detail-step">
+                        <div class="detail-step-num">${i+1}</div>
+                        <p>${s}</p>
+                    </div>`).join('');
+                document.getElementById('detailManWrap').style.display = 'block';
+            } else {
+                document.getElementById('detailManWrap').style.display = 'none';
+            }
+
+            // Bouton commander
+            document.getElementById('detailOrderBtn').onclick = function() {
+                closeDetail();
+                openModal(d.name, d.orderPrice);
+            };
+
+            // Afficher le modal
+            document.getElementById('detailModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== FERMER DETAIL =====
+        function closeDetail() {
+            document.getElementById('detailModal').classList.remove('active');
+            document.getElementById('detailVideo').src = '';
+            document.body.style.overflow = '';
+        }
+
+        // ===== PARTAGER =====
+        function shareProduct() {
+            const title = document.getElementById('detailTitle').textContent;
+            const price = document.getElementById('detailPrice').textContent;
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: '🛍️ ' + title, text: price + ' — SombaMarket', url });
+            } else {
+                const text = encodeURIComponent('🛍️ ' + title + '\n💰 ' + price + '\n🌐 SombaMarket\n🇨🇬');
+                window.open('https://wa.me/?text=' + text, '_blank');
+            }
+        }
+
+        // Fermer en cliquant dehors
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetail();
         });
 
         // Fermer modal en cliquant dehors
