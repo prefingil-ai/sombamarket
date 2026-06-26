@@ -165,23 +165,51 @@
         }
         .hero-content { position: relative; z-index: 1; }
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
-        .hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.05rem; opacity: 0.85; margin-bottom: 0.5rem; font-weight: 300; }
         .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            border: 2px solid rgba(255,255,255,0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.3);
             padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            margin-top: 0.8rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             backdrop-filter: blur(10px);
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #42A5F5;
+            line-height: 1;
+        }
+        .hero-stat-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.2rem;
         }
 
         /* ===================== CATEGORIES ===================== */
@@ -275,6 +303,7 @@
         /* ===================== PRODUITS HORIZONTAUX ===================== */
         .products-section {
             padding: 2rem 5%;
+            background: #F7FAFF;
         }
         .products-header {
             max-width: 1400px;
@@ -284,9 +313,11 @@
             justify-content: space-between;
         }
         .products-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: #0A1628;
+            letter-spacing: -0.5px;
         }
         .products-header h2 span { color: #1565C0; }
         .scroll-hint {
@@ -309,11 +340,13 @@
             display: flex;
             gap: 1.5rem;
             overflow-x: auto;
+            overflow-y: visible;
             padding: 1rem 0.5rem 2rem;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: #1565C0 #E3F2FD;
             -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
         }
         .products-horizontal::-webkit-scrollbar { height: 6px; }
         .products-horizontal::-webkit-scrollbar-track { background: #E3F2FD; border-radius: 3px; }
@@ -344,163 +377,381 @@
             transform: scale(1.1);
         }
 
-        /* ===================== CARTE PRODUIT ===================== */
+        /* ===================== CARTE PRODUIT — DESIGN PRO B2B ===================== */
         .product-card {
-            background: #FFFFFF;
-            border-radius: 20px;
+            background: #fff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(139,105,20,0.1);
-            transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 2px 12px rgba(10,22,40,0.08);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
             scroll-snap-align: start;
             flex-shrink: 0;
-            width: 320px;
-            border: 2px solid #BBDEFB;
+            width: 280px;
+            border: 1px solid #DDE6F0;
             position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(139,105,20,0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(21,101,192,0.18);
             border-color: #1565C0;
         }
 
-        /* Bande décorative pagne en haut */
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: repeating-linear-gradient(90deg,
-                #1565C0 0px, #1565C0 15px,
-                #42A5F5 15px, #42A5F5 30px,
-                #E3F2FD 30px, #E3F2FD 45px
-            );
-            z-index: 10;
-        }
-
+        /* Zone image carrée avec fond neutre */
         .product-media {
             position: relative;
-            height: 220px;
-            background: #E3F2FD;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #F7FAFF;
             overflow: hidden;
+            border-bottom: 1px solid #EEF2F8;
         }
-        .product-media img,
-        .product-media video {
+        .product-media img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
+            object-fit: contain;
+            padding: 20px;
+            transition: transform 0.4s ease;
         }
-        .product-card:hover .product-media img { transform: scale(1.08); }
+        .product-card:hover .product-media img {
+            transform: scale(1.07);
+        }
 
+        /* Badge en haut à gauche */
         .media-badge {
             position: absolute;
-            top: 12px; right: 12px;
+            top: 10px;
+            left: 10px;
             background: #1565C0;
-            color: var(--white);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
         }
+        .media-badge.promo { background: #DC241F; }
 
-        .product-body { padding: 1.2rem; }
+        /* Overlay action au survol */
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,22,40,0.55);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .product-card:hover .product-overlay { opacity: 1; }
+
+        .overlay-see-btn {
+            background: #fff;
+            color: #0A1628;
+            border: none;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+            width: 160px;
+            text-align: center;
+        }
+        .overlay-see-btn:hover { background: #E3F2FD; }
+
+        .overlay-buy-btn {
+            background: #1565C0;
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+            width: 160px;
+            text-align: center;
+        }
+        .overlay-buy-btn:hover { background: #0D47A1; }
+
+        /* Corps de la carte */
+        .product-body {
+            padding: 1rem 1rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
         .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: #0A1628;
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
-        }
-
-        .product-description {
-            color: #555;
+            font-family: 'Inter', sans-serif;
             font-size: 0.88rem;
-            line-height: 1.5;
-            margin-bottom: 0.8rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-importance {
-            background: #E3F2FD;
-            border-left: 4px solid #1565C0;
-            padding: 0.6rem 0.8rem;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.82rem;
             font-weight: 600;
-            color: #0A1628;
-            margin-bottom: 0.8rem;
+            color: #1A2B45;
+            margin-bottom: 0.3rem;
+            line-height: 1.35;
+            letter-spacing: -0.1px;
         }
 
-        .product-footer {
+        .product-sku {
+            font-size: 0.72rem;
+            color: #9AAFCA;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-price-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 0.7rem;
+            border-top: 1px solid #EEF2F8;
         }
 
         .product-price {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.5rem;
-            color: #1565C0;
-            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
         }
-        .product-price .old-price {
-            font-size: 1rem;
-            color: #999;
+        .price-main {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0A1628;
+            letter-spacing: -0.5px;
+        }
+        .price-old {
+            font-size: 0.72rem;
+            color: #B0B8C4;
             text-decoration: line-through;
-            display: block;
         }
-
-        .manual-btn {
-            background: #E3F2FD;
-            color: #1565C0;
-            border: 1px solid var(--blue-light);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-        .manual-btn:hover { background: #1565C0; color: var(--white); }
-
-        .order-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #1565C0, #0A1628);
-            color: var(--white);
-            border: none;
-            padding: 0.9rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
+        .price-save {
+            font-size: 0.7rem;
+            color: #DC241F;
             font-weight: 700;
+        }
+
+        .add-cart-btn {
+            background: #1565C0;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 0.8rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .add-cart-btn:hover {
+            background: #0D47A1;
+            transform: scale(1.08);
+        }
+
+        /* Rating stars */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .stars { color: #FFB300; font-size: 0.72rem; letter-spacing: 1px; }
+        .rating-count { font-size: 0.68rem; color: #9AAFCA; }
+
+        /* Cacher les anciens éléments */
+        .product-description,
+        .product-importance,
+        .product-footer,
+
+        /* ===== PAGE DETAIL PRODUIT ===== */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,22,40,0.92);
+            z-index: 3000;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+        .detail-modal.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        .detail-wrap {
+            max-width: 860px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        .detail-close-btn {
+            position: fixed;
+            top: 1rem; right: 1rem;
+            background: white;
+            border: none;
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 3001;
             transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .detail-close-btn:hover { background: #DC241F; color: white; transform: rotate(90deg); }
+        .detail-gallery {
+            background: #F0F7FF;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .detail-main-img {
+            max-width: 100%;
+            max-height: 380px;
+            object-fit: contain;
+            border-radius: 16px;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .detail-video-wrap {
+            width: 100%;
+            border-radius: 16px;
             overflow: hidden;
         }
-        .order-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #42A5F5, #1565C0);
-            transition: left 0.4s;
+        .detail-info { padding: 2rem; }
+        .detail-badge {
+            display: inline-block;
+            background: #E3F2FD;
+            color: #1565C0;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
         }
-        .order-btn:hover::before { left: 0; }
-        .order-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(139,105,20,0.4);
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #0A1628;
+            margin-bottom: 1rem;
         }
-        .order-btn span { position: relative; z-index: 1; }
+        .detail-price-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .detail-price {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: #1565C0;
+        }
+        .detail-old-price {
+            font-size: 1.1rem;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        .detail-promo {
+            background: #DC241F;
+            color: white;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .detail-divider {
+            height: 2px;
+            background: #E3F2FD;
+            margin: 1.2rem 0;
+        }
+        .detail-section-label {
+            font-weight: 700;
+            color: #1565C0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.7rem;
+        }
+        .detail-desc-text {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+        .detail-importance-box {
+            background: #E3F2FD;
+            border-left: 5px solid #1565C0;
+            padding: 1rem 1.2rem;
+            border-radius: 0 12px 12px 0;
+            color: #0A1628;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .detail-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
+        .detail-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.75rem 1rem;
+            background: #F0F7FF;
+            border-radius: 10px;
+        }
+        .detail-step-num {
+            background: #1565C0;
+            color: white;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .detail-step p { margin: 0; color: #333; line-height: 1.5; font-size: 0.92rem; }
+        .detail-order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        .detail-order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+        }
+        @media (max-width: 768px) {
+            .detail-wrap { margin: 0; border-radius: 0; }
+        }
 
-        /* ===================== MODAL ===================== */
         .modal {
             display: none;
             position: fixed;
@@ -874,7 +1125,7 @@
         @media (max-width: 768px) {
             .logo-text .brand { font-size: 1.6rem; }
             .header-search { display: none; }
-            .product-card { width: 280px; }
+            .product-card { width: 240px; }
             .footer-inner { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
         }
@@ -952,6 +1203,24 @@
             <h1>Découvrez Nos Produits d'Excellence</h1>
             <p>Des produits authentiques 100% Congo 🇨🇬, livrés à domicile à Brazzaville</p>
             <div class="hero-badge">🇨🇬 MADE IN CONGO — FIERTÉ CONGOLAISE 🇨🇬</div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-num">500+</div>
+                <div class="hero-stat-label">Clients satisfaits</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">24h</div>
+                <div class="hero-stat-label">Livraison Brazza</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">100%</div>
+                <div class="hero-stat-label">Qualité garantie</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">8</div>
+                <div class="hero-stat-label">Catégories</div>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -1001,9 +1270,12 @@
     <!-- ===== PRODUITS ===== -->
     <section class="products-section">
         <div class="products-header">
-            <h2>Nos <span>Produits</span></h2>
+            <div>
+                <h2>Nos <span>Produits</span></h2>
+                <p style="color:#6B8BA4; font-size:0.85rem; margin-top:0.2rem;">Qualité garantie — Livraison Brazzaville & Pointe-Noire</p>
+            </div>
             <div style="display:flex; align-items:center; gap:1rem;">
-                <span class="scroll-hint">← Défiler →</span>
+<span class="scroll-hint" style="font-size:0.78rem; letter-spacing:1px; text-transform:uppercase;">← Parcourir →</span>
                 <div class="scroll-nav">
                     <button class="scroll-btn" onclick="scrollProducts(-1)">&#8592;</button>
                     <button class="scroll-btn" onclick="scrollProducts(1)">&#8594;</button>
@@ -1013,130 +1285,148 @@
         <div class="products-scroll-wrapper">
             <div class="products-horizontal" id="productsContainer">
 
-                <!-- PRODUIT 1: Cuiseur à Oeufs -->
-                <div class="product-card" data-category="aliments" data-subcategory="equipements">
+
+                <!-- Cuiseur à Œufs Électrique 7-en-1 -->
+                <div class="product-card" data-category="aliments" data-subcategory="equipements" onclick="openDetailWithImg('Cuiseur à Œufs Électrique 7-en-1', this)">
                     <div class="product-media">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='218' rx='110' ry='12' fill='%23BBDEFB' opacity='0.5'/><rect x='100' y='150' width='200' height='65' rx='32' fill='white' stroke='%231565C0' stroke-width='2'/><ellipse cx='200' cy='150' rx='100' ry='16' fill='white' stroke='%231565C0' stroke-width='2'/><ellipse cx='200' cy='150' rx='85' ry='11' fill='%23F0F8FF'/><circle cx='168' cy='147' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='200' cy='144' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='232' cy='147' r='13' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='152' cy='158' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='248' cy='158' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='183' cy='160' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='217' cy='160' r='10' fill='%23FFFDE7' stroke='%23F9A825' stroke-width='1.5'/><circle cx='200' cy='200' r='9' fill='%23E53935'/><circle cx='200' cy='200' r='5' fill='%23FF7043'/><rect x='155' y='206' width='90' height='5' rx='2.5' fill='%231565C0' opacity='0.25'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Cuiseur à Oeufs 7-en-1</text><text x='200' y='252' font-family='Arial' font-size='11' fill='%2342A5F5' text-anchor='middle' fill='%231565C0'>10 à 15 minutes — Arrêt automatique</text></svg>" alt="Cuiseur à Oeufs">
-                        <div class="media-badge">⚡ Produit Gagnant</div>
+                        <div class="media-badge promo">🔥 PROMO</div>
+                        <div class="product-overlay">
+                            <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailWithImg('Cuiseur à Œufs Électrique 7-en-1', this.closest('.product-card'))">🔍 Voir le produit</button>
+                            <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('Cuiseur à Œufs Électrique 7-en-1','12500')">💬 Commander</button>
+                        </div>
                     </div>
                     <div class="product-body">
+                        <div class="product-sku">SKU-CEL-001</div>
                         <h3 class="product-title">Cuiseur à Œufs Électrique 7-en-1</h3>
-                        <p class="product-description">
-                            Préparez un petit-déjeuner parfait en quelques minutes sans surveillance ! Ce cuiseur électrique intelligent cuit jusqu'à 7 œufs simultanément - durs, mollets ou pochés selon vos préférences.
-                        </p>
-                        <div class="product-importance">
-                            ⭐ Gagnez 15 min chaque matin ! Cuisson parfaite garantie, arrêt automatique, économique.
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(127 avis)</span>
                         </div>
-                        <div class="product-footer">
+                        <div class="product-price-row">
                             <div class="product-price">
-                                <span class="old-price">15 000 FCFA</span>
-                                12 500 FCFA
+                                <div class="price-old">15 000 FCFA</div>
+                                <div class="price-main">12 500 FCFA</div>
+                                <div class="price-save">Économisez 2 500 FCFA</div>
                             </div>
-                            <button class="manual-btn" onclick="openFiche('Cuiseur à Œufs Électrique 7-en-1', '12500')">📖 Manuel</button>
+                            <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('Cuiseur à Œufs Électrique 7-en-1','12500')">🛒</button>
                         </div>
-                        <button class="order-btn" onclick="openModal('Cuiseur à Œufs Électrique 7-en-1','12500')">
-                            <span>🛒 Commander sur WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
-                <!-- PRODUIT 2: Huile de Palme -->
-                <div class="product-card" data-category="aliments" data-subcategory="huiles">
+                <!-- Huile de Palme Premium -->
+                <div class="product-card" data-category="aliments" data-subcategory="huiles" onclick="openDetailWithImg('Huile de Palme Premium', this)">
                     <div class="product-media">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='220' rx='80' ry='10' fill='%23BBDEFB' opacity='0.4'/><rect x='165' y='85' width='70' height='130' rx='20' fill='%23E65100'/><rect x='172' y='85' width='56' height='130' rx='16' fill='%23FF6D00'/><rect x='172' y='130' width='56' height='50' rx='5' fill='white' opacity='0.92'/><text x='200' y='148' font-family='Arial' font-size='8' fill='%23E65100' text-anchor='middle' font-weight='bold'>HUILE DE PALME</text><text x='200' y='160' font-family='Arial' font-size='7' fill='%23666' text-anchor='middle'>100%25 Naturelle</text><text x='200' y='172' font-family='Arial' font-size='7' fill='%23666' text-anchor='middle'>1 Litre</text><rect x='172' y='68' width='56' height='22' rx='10' fill='%23BF360C'/><rect x='182' y='56' width='36' height='15' rx='7' fill='%23D84315'/><ellipse cx='200' cy='56' rx='18' ry='5' fill='%23BF360C'/><circle cx='150' cy='125' r='22' fill='%231B5E20' opacity='0.85'/><path d='M150 113 Q155 120 150 132 Q145 120 150 113Z' fill='%2381C784'/><path d='M142 118 Q150 124 158 118' fill='none' stroke='%2381C784' stroke-width='1.5'/><text x='200' y='242' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Huile de Palme Premium</text></svg>" alt="Huile de Palme">
-                        <div class="media-badge">🌿 Naturel</div>
+                        <div class="media-badge">🌿 NATUREL</div>
+                        <div class="product-overlay">
+                            <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailWithImg('Huile de Palme Premium', this.closest('.product-card'))">🔍 Voir le produit</button>
+                            <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('Huile de Palme Premium','12500')">💬 Commander</button>
+                        </div>
                     </div>
                     <div class="product-body">
+                        <div class="product-sku">SKU-HDP-002</div>
                         <h3 class="product-title">Huile de Palme Premium</h3>
-                        <p class="product-description">
-                            Huile de palme 100% naturelle, extraite artisanalement dans les plantations congolaises. Qualité supérieure, riche en vitamines et nutriments essentiels pour toute la famille.
-                        </p>
-                        <div class="product-importance">
-                            ⭐ Produit de base essentiel. Source naturelle de vitamine A et antioxydants.
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(89 avis)</span>
                         </div>
-                        <div class="product-footer">
-                            <div class="product-price">12 500 FCFA</div>
-                            <button class="manual-btn" onclick="openFiche('Huile de Palme Premium', '12500')">📖 Manuel</button>
+                        <div class="product-price-row">
+                            <div class="product-price">
+                                
+                                <div class="price-main">12 500 FCFA</div>
+                                
+                            </div>
+                            <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('Huile de Palme Premium','12500')">🛒</button>
                         </div>
-                        <button class="order-btn" onclick="openModal('Huile de Palme Premium','12500')">
-                            <span>🛒 Commander sur WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
-                <!-- PRODUIT 3: Manioc -->
-                <div class="product-card" data-category="aliments" data-subcategory="feculents">
+                <!-- Manioc Frais Premium -->
+                <div class="product-card" data-category="aliments" data-subcategory="feculents" onclick="openDetailWithImg('Manioc Frais Premium', this)">
                     <div class="product-media">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='215' rx='130' ry='14' fill='%23BBDEFB' opacity='0.4'/><ellipse cx='185' cy='160' rx='85' ry='42' fill='%236D4C41' transform='rotate(-12 185 160)'/><ellipse cx='185' cy='160' rx='72' ry='35' fill='%238D6E63' transform='rotate(-12 185 160)'/><ellipse cx='225' cy='150' rx='60' ry='32' fill='%235D4037' transform='rotate(10 225 150)' opacity='0.9'/><ellipse cx='225' cy='150' rx='50' ry='26' fill='%23A1887F' transform='rotate(10 225 150)'/><path d='M135 145 Q185 128 240 148' fill='none' stroke='%234E342E' stroke-width='2' stroke-dasharray='5 3'/><path d='M132 168 Q182 183 238 163' fill='none' stroke='%234E342E' stroke-width='2' stroke-dasharray='5 3'/><path d='M182 108 Q187 88 192 76' fill='none' stroke='%232E7D32' stroke-width='3' stroke-linecap='round'/><path d='M192 76 Q203 62 218 68' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M192 76 Q180 62 168 70' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Manioc Frais Premium</text></svg>" alt="Manioc Frais">
-                        <div class="media-badge">🇨🇬 Local</div>
+                        <div class="media-badge">🇨🇬 LOCAL</div>
+                        <div class="product-overlay">
+                            <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailWithImg('Manioc Frais Premium', this.closest('.product-card'))">🔍 Voir le produit</button>
+                            <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('Manioc Frais Premium','3500')">💬 Commander</button>
+                        </div>
                     </div>
                     <div class="product-body">
+                        <div class="product-sku">SKU-MFP-003</div>
                         <h3 class="product-title">Manioc Frais Premium</h3>
-                        <p class="product-description">
-                            Manioc frais de première qualité, cultivé dans nos fermes biologiques congolaises. Récolté à maturité parfaite pour garantir goût et texture exceptionnels.
-                        </p>
-                        <div class="product-importance">
-                            ⭐ Aliment de base indispensable. Source d'énergie durable pour toute la famille.
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-count">(64 avis)</span>
                         </div>
-                        <div class="product-footer">
-                            <div class="product-price">3 500 FCFA / Kg</div>
-                            <button class="manual-btn" onclick="openFiche('Manioc Frais Premium', '3500')">📖 Manuel</button>
+                        <div class="product-price-row">
+                            <div class="product-price">
+                                
+                                <div class="price-main">3 500 FCFA / Kg</div>
+                                
+                            </div>
+                            <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('Manioc Frais Premium','3500')">🛒</button>
                         </div>
-                        <button class="order-btn" onclick="openModal('Manioc Frais Premium','3500')">
-                            <span>🛒 Commander sur WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
-                <!-- PRODUIT 4: Poisson Salé -->
-                <div class="product-card" data-category="aliments" data-subcategory="proteines">
+                <!-- Poisson Salé Artisanal -->
+                <div class="product-card" data-category="aliments" data-subcategory="proteines" onclick="openDetailWithImg('Poisson Salé Artisanal', this)">
                     <div class="product-media">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='212' rx='125' ry='12' fill='%23BBDEFB' opacity='0.45'/><path d='M290 130 L325 100 L325 160 Z' fill='%23455A64'/><path d='M88 130 Q132 78 228 100 Q290 115 290 130 Q228 168 132 156 Q88 148 88 130Z' fill='%23546E7A'/><path d='M150 94 Q200 83 252 98 Q215 90 150 94Z' fill='%23607D8B' opacity='0.7'/><path d='M145 163 Q192 176 245 160 Q202 170 145 163Z' fill='%23455A64' opacity='0.7'/><ellipse cx='245' cy='121' rx='11' ry='12' fill='white'/><circle cx='245' cy='121' r='7' fill='%23263238'/><circle cx='243' cy='119' r='2.5' fill='white'/><path d='M160 100 L165 162' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M192 90 L196 170' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M222 93 L225 166' stroke='%23455A64' stroke-width='1' stroke-dasharray='4 4'/><path d='M120 117 Q130 106 145 112' fill='none' stroke='%23607D8B' stroke-width='2' stroke-linecap='round'/><path x1='125' y1='132' x2='142' y2='130' fill='none'/><path d='M117 132 Q128 126 142 130' fill='none' stroke='%23607D8B' stroke-width='2' stroke-linecap='round'/><text x='200' y='236' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Poisson Salé Artisanal</text></svg>" alt="Poisson Salé">
-                        <div class="media-badge">🐟 Artisanal</div>
+                        <div class="media-badge">🐟 ARTISANAL</div>
+                        <div class="product-overlay">
+                            <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailWithImg('Poisson Salé Artisanal', this.closest('.product-card'))">🔍 Voir le produit</button>
+                            <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('Poisson Salé Artisanal','8000')">💬 Commander</button>
+                        </div>
                     </div>
                     <div class="product-body">
+                        <div class="product-sku">SKU-PSA-004</div>
                         <h3 class="product-title">Poisson Salé Artisanal</h3>
-                        <p class="product-description">
-                            Poisson du fleuve Congo, salé et séché selon les méthodes traditionnelles. Saveur authentique et conservation optimale garanties.
-                        </p>
-                        <div class="product-importance">
-                            ⭐ Excellente source de protéines. Ingrédient clé des sauces et plats congolais.
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(52 avis)</span>
                         </div>
-                        <div class="product-footer">
-                            <div class="product-price">8 000 FCFA / 500g</div>
-                            <button class="manual-btn" onclick="openFiche('Poisson Salé Artisanal', '8000')">📖 Manuel</button>
+                        <div class="product-price-row">
+                            <div class="product-price">
+                                
+                                <div class="price-main">8 000 FCFA / 500g</div>
+                                
+                            </div>
+                            <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('Poisson Salé Artisanal','8000')">🛒</button>
                         </div>
-                        <button class="order-btn" onclick="openModal('Poisson Salé Artisanal','8000')">
-                            <span>🛒 Commander sur WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
-                <!-- PRODUIT 5: Safou -->
-                <div class="product-card" data-category="aliments" data-subcategory="fruits">
+                <!-- Safou Frais -->
+                <div class="product-card" data-category="aliments" data-subcategory="fruits" onclick="openDetailWithImg('Safou Frais', this)">
                     <div class="product-media">
                         <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect fill='%23FAF3E0' width='400' height='260'/><ellipse cx='200' cy='215' rx='115' ry='13' fill='%23BBDEFB' opacity='0.4'/><ellipse cx='168' cy='152' rx='36' ry='50' fill='%234A148C' transform='rotate(-8 168 152)'/><ellipse cx='168' cy='152' rx='28' ry='40' fill='%235E35B1' transform='rotate(-8 168 152)'/><ellipse cx='158' cy='136' rx='9' ry='14' fill='%237E57C2' opacity='0.45' transform='rotate(-8 158 136)'/><ellipse cx='218' cy='150' rx='34' ry='48' fill='%234527A0' transform='rotate(7 218 150)'/><ellipse cx='218' cy='150' rx='26' ry='38' fill='%235C35B1' transform='rotate(7 218 150)'/><ellipse cx='208' cy='135' rx='8' ry='12' fill='%237E57C2' opacity='0.45' transform='rotate(7 208 135)'/><ellipse cx='193' cy='162' rx='30' ry='44' fill='%236A1B9A'/><ellipse cx='193' cy='162' rx='23' ry='35' fill='%237B1FA2'/><ellipse cx='183' cy='147' rx='7' ry='11' fill='%239C27B0' opacity='0.45'/><path d='M184 105 Q187 85 193 74' fill='none' stroke='%232E7D32' stroke-width='3' stroke-linecap='round'/><path d='M193 74 Q204 60 220 67' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M193 74 Q181 60 168 68' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round'/><path d='M193 82 Q208 73 218 79' fill='none' stroke='%2343A047' stroke-width='2' stroke-linecap='round'/><text x='200' y='238' font-family='Arial' font-size='13' fill='%231565C0' text-anchor='middle' font-weight='bold' fill='%230A1628'>Safou (Prunes Africaines)</text></svg>" alt="Safou">
-                        <div class="media-badge">🌴 Tropical</div>
+                        <div class="media-badge">🌴 TROPICAL</div>
+                        <div class="product-overlay">
+                            <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailWithImg('Safou Frais', this.closest('.product-card'))">🔍 Voir le produit</button>
+                            <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('Safou Frais','6500')">💬 Commander</button>
+                        </div>
                     </div>
                     <div class="product-body">
-                        <h3 class="product-title">Safou Frais (Prunes Africaines)</h3>
-                        <p class="product-description">
-                            Safous fraîchement cueillis, riches en huiles naturelles et saveurs délicates. Fruit tropical prisé pour sa valeur nutritionnelle exceptionnelle.
-                        </p>
-                        <div class="product-importance">
-                            ⭐ Riche en lipides sains, vitamines et minéraux. Délice tropical aux multiples bienfaits.
+                        <div class="product-sku">SKU-SF-005</div>
+                        <h3 class="product-title">Safou Frais</h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-count">(41 avis)</span>
                         </div>
-                        <div class="product-footer">
-                            <div class="product-price">6 500 FCFA / Kg</div>
-                            <button class="manual-btn" onclick="openFiche('Safou Frais', '6500')">📖 Manuel</button>
+                        <div class="product-price-row">
+                            <div class="product-price">
+                                
+                                <div class="price-main">6 500 FCFA / Kg</div>
+                                
+                            </div>
+                            <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('Safou Frais','6500')">🛒</button>
                         </div>
-                        <button class="order-btn" onclick="openModal('Safou Frais','6500')">
-                            <span>🛒 Commander sur WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
-            </div><!-- fin products-horizontal -->
+                        </div><!-- fin products-horizontal -->
         </div><!-- fin wrapper -->
     </section>
 
@@ -1189,6 +1479,45 @@
                     Commander sur WhatsApp
                 </button>
 
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== PAGE DETAIL PRODUIT ===== -->
+    <div class="detail-modal" id="detailModal">
+        <button class="detail-close-btn" onclick="closeDetail()">✕</button>
+        <div class="detail-wrap">
+            <div class="detail-gallery">
+                <img id="detailImg" class="detail-main-img" src="" alt="Produit">
+                <div id="detailVideoWrap" class="detail-video-wrap" style="display:none;">
+                    <iframe id="detailVideo" width="100%" height="320" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="detail-info">
+                <div id="detailBadge" class="detail-badge"></div>
+                <h2 id="detailTitle" class="detail-title"></h2>
+                <div class="detail-price-row">
+                    <div id="detailPrice" class="detail-price"></div>
+                    <div id="detailOldPrice" class="detail-old-price"></div>
+                    <div id="detailPromo" class="detail-promo" style="display:none;"></div>
+                </div>
+                <div class="detail-divider"></div>
+                <div class="detail-section-label">📄 Description</div>
+                <p id="detailDesc" class="detail-desc-text"></p>
+                <div id="detailImpWrap">
+                    <div class="detail-section-label">⭐ Pourquoi ce produit ?</div>
+                    <div id="detailImp" class="detail-importance-box"></div>
+                </div>
+                <div class="detail-divider"></div>
+                <div id="detailManWrap">
+                    <div class="detail-section-label">📖 Mode d'emploi</div>
+                    <div id="detailSteps" class="detail-steps"></div>
+                </div>
+                <button class="detail-order-btn" id="detailOrderBtn">
+                    <span style="font-size:1.4rem">💬</span>
+                    Commander sur WhatsApp
+                </button>
             </div>
         </div>
     </div>
@@ -2068,22 +2397,25 @@ function addProductCard(p) {
     card.dataset.subcategory = p.subcat || '';
     card.dataset.productId = p.id;
     card.innerHTML = `
-        <div class="product-media" style="position:relative;">
+        <div class="product-media">
             ${mediaHTML}
             <div class="media-badge">${p.badge || '⭐ Nouveau'}</div>
+            <div class="product-overlay">
+                <button class="overlay-see-btn" onclick="event.stopPropagation(); openDetailAdmin(${p.id})">👁️ Voir détails</button>
+                <button class="overlay-buy-btn" onclick="event.stopPropagation(); openModal('${p.name.replace(/'/g,"\\'")}','${p.price}')">🛒 Commander</button>
+            </div>
         </div>
         <div class="product-body">
             <h3 class="product-title">${p.name}</h3>
-            <p class="product-description">${p.desc}</p>
-            ${p.imp ? `<div class="product-importance">⭐ ${p.imp}</div>` : ''}
-            <div class="product-footer">
-                <div class="product-price">${priceDisplay}</div>
-                ${(p.manual || p.desc) ? `<button class="manual-btn" onclick="openFicheAdmin(${p.id})">📖 Manuel</button>` : ''}
+            <div class="product-price-row">
+                <div class="product-price">
+                    ${p.oldprice ? `<span class="old-price">${parseInt(p.oldprice).toLocaleString()} FCFA</span>` : ''}
+                    ${parseInt(p.price).toLocaleString()} FCFA${p.unit ? ' '+p.unit : ''}
+                </div>
+                <button class="add-cart-btn" onclick="event.stopPropagation(); openModal('${p.name.replace(/'/g,"\\'")}','${p.price}')">🛒</button>
             </div>
-            <button class="order-btn" onclick="openModal('${p.name.replace(/'/g,"\\'")}','${p.price}')">
-                <span>🛒 Commander sur WhatsApp</span>
-            </button>
         </div>`;
+    card.addEventListener('click', () => openDetailAdmin(p.id));
     container.appendChild(card);
 }
 
