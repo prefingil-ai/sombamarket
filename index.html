@@ -251,7 +251,23 @@
             min-width: 100px;
             font-family: 'Inter', sans-serif;
         }
-        .cat-btn .cat-icon { font-size: 1.8rem; display:flex; align-items:center; justify-content:center; }
+        .cat-btn .cat-icon {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F0F7FF;
+        }
+        .cat-btn .cat-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
         .cat-btn .cat-name { font-size: 0.8rem; font-weight: 600; color: #0A1628; letter-spacing: 0.3px; }
         .cat-btn:hover {
             border-color: #1565C0;
@@ -2086,6 +2102,7 @@
       <div style="display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap;">
         <button class="atab active" onclick="showTab('tab-add')" id="btn-add" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:#1565C0; color:white; cursor:pointer; font-weight:600; font-size:0.9rem;">➕ Ajouter Produit</button>
         <button class="atab" onclick="showTab('tab-list')" id="btn-list" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:white; color:#1565C0; cursor:pointer; font-weight:600; font-size:0.9rem;">📦 Mes Produits</button>
+        <button class="atab" onclick="showTab('tab-cats')" id="btn-cats" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:white; color:#1565C0; cursor:pointer; font-weight:600; font-size:0.9rem;">🖼️ Images Catégories</button>
         <button class="atab" onclick="showTab('tab-promo')" id="btn-promo" style="padding:0.7rem 1.5rem; border-radius:50px; border:2px solid #1565C0; background:white; color:#1565C0; cursor:pointer; font-weight:600; font-size:0.9rem;">🔥 Promotions</button>
       </div>
 
@@ -2207,6 +2224,133 @@
         </div>
       </div>
 
+
+      <!-- TAB IMAGES CATEGORIES -->
+      <div id="tab-cats" style="display:none;">
+        <div style="background:white; border-radius:16px; padding:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+          <h3 style="font-family:'Playfair Display',serif; color:#0A1628; font-size:1.4rem; margin-bottom:0.5rem;">🖼️ Images des Catégories</h3>
+          <p style="color:#888; font-size:0.85rem; margin-bottom:1.5rem;">
+            Uploadez vos vraies photos sur <strong>imgbb.com</strong> puis collez le lien direct ici pour personnaliser chaque catégorie.
+          </p>
+
+          <!-- Guide rapide -->
+          <div style="background:#E3F2FD; border-radius:12px; padding:1rem 1.2rem; margin-bottom:2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+            <div style="font-size:1.5rem;">💡</div>
+            <div>
+              <strong style="color:#0A1628;">Comment uploader une image ?</strong><br>
+              <span style="color:#555; font-size:0.85rem;">1. Allez sur <a href="https://imgbb.com" target="_blank" style="color:#1565C0;">imgbb.com</a> &nbsp;→&nbsp; 2. Uploadez votre photo &nbsp;→&nbsp; 3. Copiez le <strong>"Lien direct"</strong> &nbsp;→&nbsp; 4. Collez ici</span>
+            </div>
+            <button onclick="window.open('https://imgbb.com','_blank')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; white-space:nowrap;">📤 Ouvrir ImgBB</button>
+          </div>
+
+          <!-- Liste des catégories -->
+          <div style="display:grid; gap:1.2rem;">
+
+            <!-- Tout -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-all" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">🛍️</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Tout</div>
+                <input type="url" id="img-all" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('all')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('all')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Aliments -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-aliments" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">🍽️</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Aliments</div>
+                <input type="url" id="img-aliments" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('aliments')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('aliments')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Cosmétique -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-cosmetique" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">💄</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Cosmétique</div>
+                <input type="url" id="img-cosmetique" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('cosmetique')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('cosmetique')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Habillement -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-habillement" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">👔</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Habillement</div>
+                <input type="url" id="img-habillement" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('habillement')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('habillement')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Santé -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-sante" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">⚕️</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Santé</div>
+                <input type="url" id="img-sante" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('sante')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('sante')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Énergies -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-energie" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">⚡</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Énergies</div>
+                <input type="url" id="img-energie" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('energie')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('energie')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Construction -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-construction" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">🏗️</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Construction</div>
+                <input type="url" id="img-construction" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('construction')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('construction')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+            <!-- Automobile -->
+            <div style="display:flex; align-items:center; gap:1.2rem; padding:1rem; border:2px solid #E3F2FD; border-radius:12px; flex-wrap:wrap;">
+              <div id="preview-automobile" style="width:70px; height:70px; border-radius:12px; background:#F0F7FF; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0;">🚗</div>
+              <div style="flex:1; min-width:150px;">
+                <div style="font-weight:700; color:#0A1628; margin-bottom:0.4rem;">Catégorie : Automobile</div>
+                <input type="url" id="img-automobile" placeholder="https://i.imgur.com/votre-image.jpg" onchange="previewCatImg('automobile')"
+                  style="width:100%; padding:0.6rem 0.8rem; border:2px solid #E3F2FD; border-radius:8px; font-size:0.85rem; outline:none; font-family:Inter,sans-serif;"
+                  onfocus="this.style.borderColor='#1565C0'" onblur="this.style.borderColor='#E3F2FD'">
+              </div>
+              <button onclick="applyCatImg('automobile')" style="background:#1565C0; color:white; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; white-space:nowrap;">✅ Appliquer</button>
+            </div>
+
+          </div><!-- fin liste catégories -->
+
+          <div style="background:#E8F5E9; border:2px solid #4CAF50; border-radius:12px; padding:1rem; margin-top:1.5rem; display:flex; align-items:center; gap:0.8rem;">
+            <span style="font-size:1.3rem;">✅</span>
+            <span style="color:#2E7D32; font-size:0.88rem; font-weight:600;">Les images sont sauvegardées automatiquement et restent même après rechargement de la page !</span>
+          </div>
+        </div>
+      </div>
+
       <!-- TAB PROMOTIONS -->
       <div id="tab-promo" style="display:none;">
         <div style="background:white; border-radius:16px; padding:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);">
@@ -2253,6 +2397,64 @@
 <script>
 // ===== MOT DE PASSE ADMIN =====
 const ADMIN_PASSWORD = 'somba2026';
+
+
+        // ===== GESTION IMAGES CATEGORIES =====
+        // Charger les images sauvegardées au démarrage
+        function loadCatImages() {
+            const saved = JSON.parse(localStorage.getItem('sombaCatImages') || '{}');
+            const cats = ['all','aliments','cosmetique','habillement','sante','energie','construction','automobile'];
+            cats.forEach(cat => {
+                if (saved[cat]) {
+                    applyCatImgDirect(cat, saved[cat]);
+                    const input = document.getElementById('img-' + cat);
+                    if (input) input.value = saved[cat];
+                }
+            });
+        }
+
+        // Aperçu en temps réel dans l'admin
+        function previewCatImg(cat) {
+            const url = document.getElementById('img-' + cat).value.trim();
+            const previewEl = document.getElementById('preview-' + cat);
+            if (url && url.startsWith('http')) {
+                previewEl.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" onerror="this.parentElement.innerHTML='❌'">`;
+            }
+        }
+
+        // Appliquer l'image à la catégorie dans la barre
+        function applyCatImg(cat) {
+            const url = document.getElementById('img-' + cat).value.trim();
+            if (!url || !url.startsWith('http')) {
+                alert('⚠️ Collez un lien valide commençant par https://');
+                return;
+            }
+            applyCatImgDirect(cat, url);
+            // Sauvegarder
+            const saved = JSON.parse(localStorage.getItem('sombaCatImages') || '{}');
+            saved[cat] = url;
+            localStorage.setItem('sombaCatImages', JSON.stringify(saved));
+            // Feedback
+            const btn = event.target;
+            const orig = btn.textContent;
+            btn.textContent = '✅ Appliqué !';
+            btn.style.background = '#4CAF50';
+            setTimeout(() => { btn.textContent = orig; btn.style.background = '#1565C0'; }, 2000);
+        }
+
+        function applyCatImgDirect(cat, url) {
+            // Trouver le bouton de catégorie correspondant
+            const catBtn = document.querySelector(`.cat-btn[data-cat="${cat}"]`);
+            if (!catBtn) return;
+            const iconEl = catBtn.querySelector('.cat-icon');
+            if (!iconEl) return;
+            iconEl.innerHTML = `<img src="${url}" style="width:56px;height:56px;object-fit:cover;border-radius:12px;" onerror="this.style.display='none'">`;
+            // Mettre à jour l'aperçu dans l'admin aussi
+            const previewEl = document.getElementById('preview-' + cat);
+            if (previewEl) {
+                previewEl.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`;
+            }
+        }
 
 // ===== STOCKAGE PRODUITS =====
 let adminProducts = JSON.parse(localStorage.getItem('sombaProducts') || '[]');
@@ -2311,10 +2513,10 @@ document.getElementById('adminOverlay').addEventListener('click', function(e) {
 
 // ===== TABS =====
 function showTab(tabId) {
-    ['tab-add','tab-list','tab-promo'].forEach(t => {
+    ['tab-add','tab-list','tab-cats','tab-promo'].forEach(t => {
         document.getElementById(t).style.display = t === tabId ? 'block' : 'none';
     });
-    ['btn-add','btn-list','btn-promo'].forEach(b => {
+    ['btn-add','btn-list','btn-cats','btn-promo'].forEach(b => {
         const btn = document.getElementById(b);
         if (b === 'btn-' + tabId.replace('tab-','')) {
             btn.style.background = '#1565C0';
